@@ -1,6 +1,11 @@
 // footer.jsx
 import React from "react";
+import "./footer.css";
 
 export const Footer = () => {
-  return <div>Footer</div>;
+  return (
+    <footer className="app-footer">
+      <p>© All rights reserved</p>
+    </footer>
+  );
 };
