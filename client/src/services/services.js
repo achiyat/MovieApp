@@ -1,53 +1,47 @@
 // client\src\services.js
 import axios from "axios";
+import { handleResponse, handleAxiosError } from "./UtilsAxiosMessage";
+
 const BASE_URL = "http://localhost:5000";
 
 export const fetchPopularMovies = async () => {
-  const response = await axios.get(`${BASE_URL}/movie/popular`);
-  return response.data.results;
+  try {
+    const response = await axios.get(`${BASE_URL}/movie/popular`);
+    return handleResponse(response);
+  } catch (error) {
+    handleAxiosError(error);
+    throw new Error("Failed to fetch popular movies");
+  }
 };
 
 export const fetchSimilarMovies = async (id) => {
-  const response = await axios.get(`${BASE_URL}/movie/${id}/similar`);
-  return response.data.results;
+  try {
+    const response = await axios.get(`${BASE_URL}/movie/${id}/similar`);
+    return handleResponse(response);
+  } catch (error) {
+    handleAxiosError(error);
+    throw new Error("Failed to fetch similar movies");
+  }
 };
 
 export const fetchMoviesByCategory = async (category) => {
-  const response = await axios.get(`${BASE_URL}/discover/movie`, {
-    params: { category },
-  });
-  return response.data.results;
+  try {
+    const response = await axios.get(`${BASE_URL}/discover/movie`, {
+      params: { category },
+    });
+    return handleResponse(response);
+  } catch (error) {
+    handleAxiosError(error);
+    throw new Error("Failed to fetch movies by category");
+  }
 };
 
 export const fetchMovieDetails = async (id) => {
-  const response = await axios.get(`${BASE_URL}/movie/${id}`);
-  return response.data;
+  try {
+    const response = await axios.get(`${BASE_URL}/movie/${id}`);
+    return handleResponse(response);
+  } catch (error) {
+    handleAxiosError(error);
+    throw new Error("Failed to fetch movie details");
+  }
 };
-
-// export const fetchPopularMovies = async () => {
-//   const response = await axios.get(`${BASE_URL}/movie/popular`);
-//   const data = await response.json();
-//   return data.results;
-// };
-
-// export const fetchSimilarMovies = async (id) => {
-//   const response = await axios.get(
-//     `${BASE_URL}/movie/${id}/similar?api_key=${API_KEY}`
-//   );
-//   const data = await response.json();
-//   return data.results;
-// };
-
-// export const fetchMoviesByCategory = async (category) => {
-//   const response = await axios.get(`${BASE_URL}/discover/movie?`, category);
-//   const data = await response.json();
-//   return data.results;
-// };
-
-// export const fetchMovieDetails = async (id) => {
-//   const response = await axios.get(
-//     `${BASE_URL}/movie/${id}?api_key=${API_KEY}&append_to_response=videos,images`
-//   );
-//   const data = await response.json();
-//   return data;
-// };
