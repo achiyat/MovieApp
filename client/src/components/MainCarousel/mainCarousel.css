@@ -1,0 +1,36 @@
+/* mainCarousel.css */
+
+.mainCarousel-container {
+  display: flex;
+  overflow-x: scroll;
+  padding: 10px;
+}
+
+.mainCarousel-card {
+  flex: 0 0 auto;
+  width: 200px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: white;
+}
+
+.mainCarousel-image {
+  width: 100%;
+  height: auto;
+}
+
+.mainCarousel-info {
+  padding: 10px;
+}
+
+.mainCarousel-info h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.mainCarousel-info p {
+  font-size: 14px;
+  color: #555;
+}

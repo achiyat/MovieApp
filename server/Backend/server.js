@@ -23,6 +23,7 @@ app.get("/movie/popular", async (req, res) => {
     });
     res.json(response.data);
   } catch (error) {
+    console.log("error");
     console.error("Error fetching popular movies:", error);
     res.status(500).json({ error: "Failed to fetch popular movies" });
   }
@@ -72,6 +73,24 @@ app.get("/discover/movie", async (req, res) => {
   } catch (error) {
     console.error(`Error fetching movies by category ${category}:`, error);
     res.status(500).json({ error: "Failed to fetch movies by category" });
+  }
+});
+
+app.get("/movie/now_playing", async (req, res) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/movie/now_playing`, {
+      params: {
+        api_key: API_KEY,
+        language: "en-US",
+        page: 1,
+        pageSize: 20,
+      },
+    });
+    res.json(response.data);
+  } catch (error) {
+    console.log("error");
+    console.error("Error fetching popular movies:", error);
+    res.status(500).json({ error: "Failed to fetch popular movies" });
   }
 });
 

@@ -7,11 +7,11 @@ import { CategoryPage } from "../../pages/CategoryPage/categoryPage";
 
 export const RouterComponent = () => {
   return (
-    <div>
+    <div className="router-component">
       <Routes>
-        <Route exact path="/" component={<HomePage />} />
-        <Route path="/movie/:id" component={<MoviePage />} />
-        <Route path="/category/:name" component={<CategoryPage />} />
+        <Route exact path="/" element={<HomePage />} />
+        <Route path="/movie/:id" element={<MoviePage />} />
+        <Route path="/category/:name" element={<CategoryPage />} />
       </Routes>
     </div>
   );
