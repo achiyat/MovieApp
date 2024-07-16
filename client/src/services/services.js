@@ -6,7 +6,7 @@ const BASE_URL = "http://localhost:5000";
 
 export const fetchNowPlayingMovies = async () => {
   try {
-    const response = await axios.get(`${BASE_URL}/movie/now_playing`);
+    const response = await axios.get(`${BASE_URL}/now-playing`);
     return handleResponse(response);
   } catch (error) {
     handleAxiosError(error);
@@ -16,7 +16,7 @@ export const fetchNowPlayingMovies = async () => {
 
 export const fetchPopularMovies = async () => {
   try {
-    const response = await axios.get(`${BASE_URL}/movie/popular`);
+    const response = await axios.get(`${BASE_URL}/popular-movies`);
     return handleResponse(response);
   } catch (error) {
     handleAxiosError(error);
@@ -26,7 +26,7 @@ export const fetchPopularMovies = async () => {
 
 export const fetchSimilarMovies = async (id) => {
   try {
-    const response = await axios.get(`${BASE_URL}/movie/${id}/similar`);
+    const response = await axios.get(`${BASE_URL}/similar-movie/${id}`);
     return handleResponse(response);
   } catch (error) {
     handleAxiosError(error);
@@ -36,7 +36,7 @@ export const fetchSimilarMovies = async (id) => {
 
 export const fetchMoviesByGenres = async (genres) => {
   try {
-    const response = await axios.get(`${BASE_URL}/discover/movie`, {
+    const response = await axios.get(`${BASE_URL}/movies-by-genres`, {
       params: { genres },
     });
     return handleResponse(response);
@@ -46,9 +46,9 @@ export const fetchMoviesByGenres = async (genres) => {
   }
 };
 
-export const fetchMovieDetails = async (id) => {
+export const fetchByMovieDetails = async (id) => {
   try {
-    const response = await axios.get(`${BASE_URL}/movie/${id}`);
+    const response = await axios.get(`${BASE_URL}/by-movie-details/${id}`);
     return handleResponse(response);
   } catch (error) {
     handleAxiosError(error);

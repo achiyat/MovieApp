@@ -27,3 +27,5 @@ yarn-debug.log*
 yarn-error.log*
 
 
+client/src/services/services copy.js
+server/Backend/server copy.js

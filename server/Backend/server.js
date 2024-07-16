@@ -14,7 +14,7 @@ const port = process.env.PORT || 8000;
 const API_KEY = process.env.TMDB_API_KEY;
 const BASE_URL = "https://api.themoviedb.org/3";
 
-app.get("/movie/popular", async (req, res) => {
+app.get("/popular-movies", async (req, res) => {
   try {
     const response = await axios.get(`${BASE_URL}/movie/popular`, {
       params: {
@@ -29,23 +29,7 @@ app.get("/movie/popular", async (req, res) => {
   }
 });
 
-app.get("/movie/:id", async (req, res) => {
-  const { id } = req.params;
-  try {
-    const response = await axios.get(`${BASE_URL}/movie/${id}`, {
-      params: {
-        api_key: API_KEY,
-        append_to_response: "videos,images",
-      },
-    });
-    res.json(response.data);
-  } catch (error) {
-    console.error(`Error fetching movie details for id ${id}:`, error);
-    res.status(500).json({ error: "Failed to fetch movie details" });
-  }
-});
-
-app.get("/movie/:id/similar", async (req, res) => {
+app.get("/similar-movie/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const response = await axios.get(`${BASE_URL}/movie/${id}/similar`, {
@@ -60,7 +44,7 @@ app.get("/movie/:id/similar", async (req, res) => {
   }
 });
 
-app.get("/discover/movie", async (req, res) => {
+app.get("/movies-by-genres", async (req, res) => {
   const { category } = req.query;
   try {
     const response = await axios.get(`${BASE_URL}/discover/movie`, {
@@ -76,7 +60,7 @@ app.get("/discover/movie", async (req, res) => {
   }
 });
 
-app.get("/movie/now_playing", async (req, res) => {
+app.get("/now-playing", async (req, res) => {
   try {
     const response = await axios.get(`${BASE_URL}/movie/now_playing`, {
       params: {
@@ -91,6 +75,23 @@ app.get("/movie/now_playing", async (req, res) => {
     console.log("error");
     console.error("Error fetching popular movies:", error);
     res.status(500).json({ error: "Failed to fetch popular movies" });
+  }
+});
+
+app.get("/by-movie-details/:id", async (req, res) => {
+  const movieId = req.params.id;
+  try {
+    const response = await axios.get(`${BASE_URL}/movie/${movieId}`, {
+      params: {
+        api_key: API_KEY,
+        language: "en-US",
+        append_to_response: "videos,images",
+      },
+    });
+    res.json(response.data);
+  } catch (error) {
+    console.error(`Error fetching details movie:`, error);
+    res.status(500).json({ error: `Failed to fetch details movie` });
   }
 });
 
