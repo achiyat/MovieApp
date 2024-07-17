@@ -19,7 +19,7 @@ export const handleResponse = (response) => {
     responseMessages[response.status] ||
     `Unexpected status: ${response.status}`;
   console.log(`${message}. Status: ${response.status}`);
-  return response.data ? response.data.results : null;
+  return response.data ? response.data.results || response.data : null;
 };
 
 export const handleAxiosError = (error) => {

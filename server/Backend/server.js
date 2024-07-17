@@ -23,7 +23,6 @@ app.get("/popular-movies", async (req, res) => {
     });
     res.json(response.data);
   } catch (error) {
-    console.log("error");
     console.error("Error fetching popular movies:", error);
     res.status(500).json({ error: "Failed to fetch popular movies" });
   }
@@ -72,7 +71,6 @@ app.get("/now-playing", async (req, res) => {
     });
     res.json(response.data);
   } catch (error) {
-    console.log("error");
     console.error("Error fetching popular movies:", error);
     res.status(500).json({ error: "Failed to fetch popular movies" });
   }
@@ -85,7 +83,8 @@ app.get("/by-movie-details/:id", async (req, res) => {
       params: {
         api_key: API_KEY,
         language: "en-US",
-        append_to_response: "videos,images",
+        append_to_response: "videos,images,credits",
+        include_image_language: "en,null",
       },
     });
     res.json(response.data);
