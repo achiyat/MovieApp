@@ -2,7 +2,7 @@
 import "./byMoviePage.css";
 import React, { useEffect, useState } from "react";
 import { fetchByMovieDetails } from "../../services/services";
-
+//
 export const ByMoviePage = ({ movieId }) => {
   const [byMovieDetails, setByMovieDetails] = useState(null);
 
