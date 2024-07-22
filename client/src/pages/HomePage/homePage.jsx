@@ -6,7 +6,7 @@ import {
 } from "../../services/services";
 import "./homePage.css";
 import { HeaderCarousel } from "../../components/HeaderCarousel/headerCarousel";
-import { MainCarousel } from "../../components/MainCarousel/mainCarousel";
+import { ScrollGallery } from "../../components/ScrollGallery/scrollGallery";
 
 export const HomePage = () => {
   const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
@@ -44,7 +44,7 @@ export const HomePage = () => {
         {Object.keys(genreMovies).map((genreId) => (
           <div key={genreId}>
             <h2>{genres[genreId]} Movies</h2>
-            <MainCarousel movies={genreMovies[genreId]} />
+            <ScrollGallery movies={genreMovies[genreId]} />
           </div>
         ))}
       </main>

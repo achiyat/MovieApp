@@ -1,7 +1,7 @@
 /* header.css */
 
 .header-header {
-  background-color: #333;
+  background-color: #000;
   color: white;
   padding: 10px 20px;
   display: flex;
@@ -24,7 +24,7 @@
   font-size: 24px;
   font-weight: bold;
   margin-right: 20px;
-  color: white;
+  color: white !important;
   text-decoration: none;
 }
 
@@ -40,7 +40,7 @@
 }
 
 .header-left-nav a {
-  color: white;
+  color: #e50914;
   text-decoration: none;
   font-size: 18px;
 }
@@ -101,7 +101,7 @@
 .header-sign-up-btn {
   margin-left: 20px;
   padding: 5px 15px;
-  background-color: green;
+  background-color: #e50914;
   color: white;
   border: none;
   border-radius: 3px;
@@ -110,5 +110,5 @@
 }
 
 .header-sign-up-btn:hover {
-  background-color: darkgreen;
+  background-color: #cc0f19;
 }
