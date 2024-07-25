@@ -1,19 +1,16 @@
-// byMoviePage.jsx
-import "./byMoviePage.css";
 import React, { useEffect, useState } from "react";
+import "./byMoviePage.css";
+import { byMovieData } from "../../dictionaries/byMovieData";
 import { fetchByMovieDetails } from "../../services/services";
 
-export const ByMoviePage = ({ movieId }) => {
-  const [byMovieDetails, setByMovieDetails] = useState(null);
+export const ByMoviePage = ({ movieId = 280180 }) => {
+  // const [byMovieDetails, setByMovieDetails] = useState(null);
+  const byMovieDetails = byMovieData;
 
-  useEffect(() => {
-    const fetchMovies = async () => {
-      const byMovieDetailsData = await fetchByMovieDetails(280180);
-      setByMovieDetails(byMovieDetailsData);
-    };
-
-    fetchMovies();
-  }, [movieId]);
+  // Construct URLs
+  const videoUrl = `https://www.youtube.com/embed/`;
+  const imgUrl = "https://image.tmdb.org/t/p/original";
+  // const byMovieDetails = byMovieData;
 
   // Filtered trailer video
   const trailerVideo = byMovieDetails?.videos.results.find(
@@ -25,112 +22,112 @@ export const ByMoviePage = ({ movieId }) => {
     .sort((a, b) => a.order - b.order)
     .slice(0, 5);
 
+  // Filtered directors (those with job "Director")
+  const directors = byMovieDetails?.credits.crew.filter(
+    (crew) => crew.job === "Director"
+  );
+
+  // useEffect(() => {
+  //   const fetchMovies = async () => {
+  //     const byMovieDetailsData = await fetchByMovieDetails(movieId);
+  //     setByMovieDetails(byMovieDetailsData);
+  //   };
+
+  //   fetchMovies();
+  // }, [movieId]);
+
   return (
-    <div className="byMovie-page">
-      <header className="byMovie-header">
-        {trailerVideo && (
-          <div className="byMovie-trailer">
-            <iframe
-              title="movie trailer"
-              width="560"
-              height="315"
-              src={`https://www.youtube.com/embed/${trailerVideo.key}`}
-              frameBorder="0"
-              allowFullScreen
+    <>
+      <header>
+        <div className="header-container">
+          <div className="background-image">
+            <img
+              src={`${imgUrl}${byMovieDetails?.backdrop_path}`}
+              alt={"Movie backdrop"}
             />
           </div>
-        )}
-        <h1 className="byMovie-movie-title">{byMovieDetails?.title}</h1>
+          <div className="details-box">
+            <img
+              src={`${imgUrl}${byMovieDetails?.images.logos[0].file_path}`}
+              alt="Movie Logo"
+              style={{
+                width: "200px",
+                height: "auto",
+                display: "block",
+                marginBottom: "10px",
+              }}
+            />
+            <h1 className="movieTitle">{byMovieDetails?.title}</h1>
+            <div className="gunnerBubble">Gunner</div>
+            <div className="movieInfo">
+              {byMovieDetails?.release_date.split("-")[0]} | Viewing
+              classification: +16 | {Math.floor(byMovieDetails?.runtime / 60)}h{" "}
+              {byMovieDetails?.runtime % 60}m
+            </div>
+            <div className="movieDescription">{byMovieDetails?.overview}</div>
+            <div className="mainActors">
+              <strong>Starring:</strong>{" "}
+              {mainActors?.map((actor) => actor.name).join(", ")}
+            </div>
+          </div>
+          <div className="gradient-overlay"></div>
+        </div>
       </header>
 
-      <main className="byMovie-main-section">
-        <div className="byMovie-film-synopsis">
-          <h2>Synopsis</h2>
-          <p>{byMovieDetails?.overview}</p>
-          {byMovieDetails?.images?.backdrops?.length > 0 && (
-            <div className="byMovie-image-gallery">
-              {byMovieDetails?.images.backdrops.map((image, index) => (
-                <img
-                  key={index}
-                  src={`https://image.tmdb.org/t/p/original${image.file_path}`}
-                  alt={`Movie backdrop ${index}`}
-                  className="byMovie-movie-image"
-                />
-              ))}
-            </div>
+      <main className="mainContent">
+        <div className="trailerContainer">
+          <h2 className="sectionTitle">Watch the Trailer</h2>
+          {videoUrl && (
+            <iframe
+              src={`${videoUrl}${trailerVideo?.key}`}
+              frameBorder="0"
+              allowFullScreen
+            ></iframe>
           )}
         </div>
-
-        <div className="byMovie-general-details">
-          <h2>General Details</h2>
-          <p>Release Date: {byMovieDetails?.release_date}</p>
-          <p>
-            Genres:{" "}
-            {byMovieDetails?.genres.map((genre) => genre.name).join(", ")}
-          </p>
-          <p>
-            Rating: {byMovieDetails?.vote_average} ({byMovieDetails?.vote_count}{" "}
-            votes)
-          </p>
-          <p>Duration: {byMovieDetails?.runtime} minutes</p>
+        <div className="photoGallery">
+          <h2 className="sectionTitle">Photo Gallery</h2>
+          <button className="arrow left-arrow">&lt;</button>
+          {byMovieDetails?.images.backdrops.map((image, index) => (
+            <img
+              key={index}
+              src={`${imgUrl}${image.file_path}`}
+              alt={`Backdrop ${index + 1}`}
+            />
+          ))}
+          <button className="arrow right-arrow">&gt;</button>
+        </div>
+        <div className="credits">
+          <div className="directorsList">
+            <h2 className="sectionTitle">Directors</h2>
+            <ul>
+              {directors?.map((director) => (
+                <li key={director.id}>
+                  <img
+                    src={`${imgUrl}${director.profile_path}`}
+                    alt={director.name}
+                  />
+                  <span>{director.name}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="actorsList">
+            <h2 className="sectionTitle">Main Actors</h2>
+            <ul>
+              {mainActors?.map((actor) => (
+                <li key={actor.id}>
+                  <img
+                    src={`${imgUrl}${actor.profile_path}`}
+                    alt={actor.name}
+                  />
+                  <span>{actor.name}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </main>
-
-      {/* Cast and Crew Section */}
-      <div className="byMovie-cast-crew-section">
-        <h2>Cast and Crew</h2>
-        {/* Directors */}
-        <div className="byMovie-directors">
-          <h3>Directors</h3>
-          {byMovieDetails?.credits?.crew
-            ?.filter((member) => member.job === "Director")
-            .map((director) => (
-              <div key={director.credit_id} className="byMovie-director">
-                <img
-                  src={`https://image.tmdb.org/t/p/w185${director.profile_path}`}
-                  alt={`Director ${director.name}`}
-                  className="byMovie-director-image"
-                />
-                <p>{director.name}</p>
-              </div>
-            ))}
-        </div>
-
-        {/* Main Actors */}
-        <div className="byMovie-actors">
-          <h3>Main Actors</h3>
-          {mainActors?.map((actor) => (
-            <div key={actor.credit_id} className="byMovie-actor">
-              <img
-                src={`https://image.tmdb.org/t/p/w185${actor.profile_path}`}
-                alt={`Actor ${actor.name}`}
-                className="byMovie-actor-image"
-              />
-              <p>{actor.name}</p>
-              <p>Character: {actor.character}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Reviews Section */}
-      <div className="byMovie-reviews-section">
-        <h2>Reviews</h2>
-        <p>Placeholder for reviews. You can implement this later.</p>
-      </div>
-
-      {/* Similar Movies Section */}
-      <div className="byMovie-similar-movies-section">
-        <h2>Similar Movies</h2>
-        {byMovieDetails?.similar?.results?.map((movie) => (
-          <p key={movie.id}>{movie.title}</p>
-        ))}
-      </div>
-
-      <footer>
-        {/* Footer Section */}
-        footer
-      </footer>
-    </div>
+    </>
   );
 };

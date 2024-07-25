@@ -1,87 +1,156 @@
-.byMovie-page {
-  font-family: Arial, sans-serif;
-  margin: 20px;
+.header-container {
+  position: relative;
+  max-width: 100%;
+  height: 500px;
+  overflow: hidden;
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.background-image img {
+  width: 100%;
+  height: 100%;
+}
+
+.gradient-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(to bottom, transparent, black);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.details-box {
+  position: relative;
+  z-index: 3;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  width: 600px;
+  height: 100%;
+  box-sizing: border-box;
+  color: white;
+}
+
+.movieTitle {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+.gunnerBubble {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(255, 0, 0);
+  border-radius: 16px;
+  padding: 0 10px;
+  margin-bottom: 10px;
+}
+
+.movieInfo {
+  margin-bottom: 10px;
+}
+
+.movieDescription {
+  margin-bottom: 20px;
+}
+
+.mainContent {
+  background: #000;
+  color: white;
   padding: 20px;
 }
 
-.byMovie-header {
+/**********************/
+/* Photo gallery */
+.photoGallery {
+  overflow-x: hidden;
+  white-space: nowrap;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.photoGallery img {
+  height: 150px;
+  margin-right: 10px;
+  transition: transform 0.2s;
+}
+
+.photoGallery img:hover {
+  transform: scale(1.1);
+}
+
+.photoGallery .arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white;
+  font-size: 2em;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.photoGallery .left-arrow {
+  left: 10px;
+}
+
+.photoGallery .right-arrow {
+  right: 10px;
+}
+
+.credits {
+  width: 350px;
+}
+
+.directorsList,
+.actorsList {
+  margin-bottom: 20px;
+}
+
+.credits li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  transition: background-color 0.2s;
+}
+
+.credits li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.credits img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+/* Trailer */
+.trailerContainer {
   text-align: center;
   margin-bottom: 20px;
 }
 
-.byMovie-trailer {
-  margin-bottom: 20px;
-}
-
-.byMovie-movie-title {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.byMovie-main-section {
-  margin-bottom: 40px;
-}
-
-.byMovie-film-synopsis {
-  margin-bottom: 20px;
-}
-
-.byMovie-general-details {
-  margin-bottom: 20px;
-}
-
-.byMovie-image-gallery {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.byMovie-movie-image {
+.trailerContainer iframe {
   width: 100%;
+  max-width: 800px;
+  height: 450px;
+}
+
+/* Section titles */
+.sectionTitle {
+  font-size: 2em;
   margin-bottom: 10px;
-}
-
-.byMovie-cast-crew-section {
-  margin-bottom: 40px;
-}
-
-.byMovie-directors {
-  margin-bottom: 20px;
-}
-
-.byMovie-director {
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.byMovie-director-image {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-.byMovie-actors {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.byMovie-actor {
-  width: 25%;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.byMovie-actor-image {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-.byMovie-reviews-section {
-  margin-bottom: 40px;
-}
-
-.byMovie-similar-movies-section {
-  margin-bottom: 40px;
 }
