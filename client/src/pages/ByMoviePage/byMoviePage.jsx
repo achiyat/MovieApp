@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./byMoviePage.css";
 import { byMovieData } from "../../dictionaries/byMovieData";
 import { fetchByMovieDetails } from "../../services/services";
+import { ScrollGallery } from "../../components/ScrollGallery/scrollGallery";
 
 export const ByMoviePage = ({ movieId = 280180 }) => {
   // const [byMovieDetails, setByMovieDetails] = useState(null);
@@ -39,14 +40,15 @@ export const ByMoviePage = ({ movieId = 280180 }) => {
   return (
     <>
       <header>
-        <div className="header-container">
-          <div className="background-image">
+        <div className="byMoviePage-header-container">
+          <div className="byMoviePage-background">
             <img
               src={`${imgUrl}${byMovieDetails?.backdrop_path}`}
               alt={"Movie backdrop"}
             />
           </div>
-          <div className="details-box">
+          <div className="byMoviePage-gradient-overlay"></div>
+          <div className="byMoviePage-details-box">
             <img
               src={`${imgUrl}${byMovieDetails?.images.logos[0].file_path}`}
               alt="Movie Logo"
@@ -57,26 +59,27 @@ export const ByMoviePage = ({ movieId = 280180 }) => {
                 marginBottom: "10px",
               }}
             />
-            <h1 className="movieTitle">{byMovieDetails?.title}</h1>
-            <div className="gunnerBubble">Gunner</div>
-            <div className="movieInfo">
+            <h1 className="byMoviePage-title">{byMovieDetails?.title}</h1>
+            <div className="byMoviePage-gunner">Gunner</div>
+            <div className="byMoviePage-info">
               {byMovieDetails?.release_date.split("-")[0]} | Viewing
               classification: +16 | {Math.floor(byMovieDetails?.runtime / 60)}h{" "}
               {byMovieDetails?.runtime % 60}m
             </div>
-            <div className="movieDescription">{byMovieDetails?.overview}</div>
-            <div className="mainActors">
+            <div className="byMoviePage-description">
+              {byMovieDetails?.overview}
+            </div>
+            <div>
               <strong>Starring:</strong>{" "}
               {mainActors?.map((actor) => actor.name).join(", ")}
             </div>
           </div>
-          <div className="gradient-overlay"></div>
         </div>
       </header>
 
-      <main className="mainContent">
-        <div className="trailerContainer">
-          <h2 className="sectionTitle">Watch the Trailer</h2>
+      <main className="byMoviePage-main">
+        <div className="byMoviePage-trailer">
+          <h2 className="byMoviePage-sectionTitle">Watch the Trailer</h2>
           {videoUrl && (
             <iframe
               src={`${videoUrl}${trailerVideo?.key}`}
@@ -85,21 +88,17 @@ export const ByMoviePage = ({ movieId = 280180 }) => {
             ></iframe>
           )}
         </div>
-        <div className="photoGallery">
-          <h2 className="sectionTitle">Photo Gallery</h2>
-          <button className="arrow left-arrow">&lt;</button>
-          {byMovieDetails?.images.backdrops.map((image, index) => (
-            <img
-              key={index}
-              src={`${imgUrl}${image.file_path}`}
-              alt={`Backdrop ${index + 1}`}
-            />
-          ))}
-          <button className="arrow right-arrow">&gt;</button>
+
+        <div className="byMoviePage-photoGallery">
+          <h2 className="byMoviePage-sectionTitle">Photo Gallery</h2>
+          <div className="byMoviePage-scroll">
+            <ScrollGallery images={byMovieDetails?.images.backdrops} />
+          </div>
         </div>
-        <div className="credits">
-          <div className="directorsList">
-            <h2 className="sectionTitle">Directors</h2>
+
+        <div className="byMoviePage-credits">
+          <div className="byMoviePage-directorsList">
+            <h2 className="byMoviePage-sectionTitle">Directors</h2>
             <ul>
               {directors?.map((director) => (
                 <li key={director.id}>
@@ -112,8 +111,8 @@ export const ByMoviePage = ({ movieId = 280180 }) => {
               ))}
             </ul>
           </div>
-          <div className="actorsList">
-            <h2 className="sectionTitle">Main Actors</h2>
+          <div className="byMoviePage-actorsList">
+            <h2 className="byMoviePage-sectionTitle">Main Actors</h2>
             <ul>
               {mainActors?.map((actor) => (
                 <li key={actor.id}>

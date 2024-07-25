@@ -36,15 +36,17 @@ export const HomePage = () => {
   }, []);
 
   return (
-    <div className="home-page">
-      <header className="home-page-header">
+    <div className="homePage">
+      <header className="homePage-header">
         <HeaderCarousel movies={nowPlayingMovies} />
       </header>
-      <main className="home-page-main">
+      <main className="homePage-main">
         {Object.keys(genreMovies).map((genreId) => (
           <div key={genreId}>
             <h2>{genres[genreId]} Movies</h2>
-            <ScrollGallery movies={genreMovies[genreId]} />
+            <div className="homePage-scroll">
+              <ScrollGallery movies={genreMovies[genreId]} />
+            </div>
           </div>
         ))}
       </main>
