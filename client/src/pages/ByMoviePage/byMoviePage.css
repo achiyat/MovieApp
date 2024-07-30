@@ -1,3 +1,4 @@
+/* byMoviePage.css */
 .byMoviePage-header-container {
   position: relative;
   max-width: 100%;
@@ -97,11 +98,11 @@
   height: 150px;
   width: 266px;
   margin-right: 20px;
-  transition: transform 0byMoviePage-2s;
+  transition: transform 0.3s ease;
 }
 
 .byMoviePage-photoGallery img:hover {
-  transform: scale(1.1);
+  transform: scaleX(1.1);
 }
 
 .byMoviePage-scroll {

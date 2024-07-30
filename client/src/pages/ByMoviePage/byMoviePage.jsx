@@ -1,3 +1,4 @@
+// byMoviePage.jsx
 import React, { useEffect, useState } from "react";
 import "./byMoviePage.css";
 import { byMovieData } from "../../dictionaries/byMovieData";

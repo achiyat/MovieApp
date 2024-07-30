@@ -1,4 +1,6 @@
+// scrollGallery.jsx
 import React, { useEffect, useRef } from "react";
+import { genresDict } from "../../dictionaries/genresDict";
 import "./scrollGallery.css";
 
 export const ScrollGallery = ({ movies, images }) => {
@@ -8,14 +10,14 @@ export const ScrollGallery = ({ movies, images }) => {
   const scrollLeft = (refMovies) => {
     const ref = refMovies ? refMovies : imagesGalleryRef;
     if (ref && ref.current) {
-      const scrollAmount = refMovies ? scrollAmountImages(ref) : 276;
+      const scrollAmount = refMovies ? scrollAmountImages(ref) : 286;
       ref.current.scrollBy({ left: -scrollAmount, behavior: "smooth" });
     }
   };
 
   const scrollRight = (refMovies) => {
     const ref = refMovies?.current ? refMovies : imagesGalleryRef;
-    const scrollAmount = refMovies?.current ? scrollAmountImages(ref) : 276;
+    const scrollAmount = refMovies?.current ? scrollAmountImages(ref) : 286;
     ref.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
   };
 
@@ -37,7 +39,28 @@ export const ScrollGallery = ({ movies, images }) => {
       }, 5000);
       return () => clearInterval(interval);
     }
+
+    if (imagesGalleryRef.current) {
+      const interval = setInterval(() => {
+        imagesGalleryRef.current.scrollBy({ left: 286, behavior: "smooth" });
+      }, 5000);
+      return () => clearInterval(interval);
+    }
   }, []);
+
+  const getGenres = (genreIds) => {
+    const genres = genreIds.map((id) => genresDict[id]).slice(0, 3);
+    return genres.join(", ");
+  };
+
+  const renderStars = (rating) => {
+    const stars = Math.round(rating / 2);
+    return Array.from({ length: 5 }, (_, index) => (
+      <span key={index} className="scrollGallery-star">
+        {index < stars ? "★" : "☆"}
+      </span>
+    ));
+  };
 
   return (
     <section className="scrollGallery-container">
@@ -53,19 +76,31 @@ export const ScrollGallery = ({ movies, images }) => {
         <div className="scrollGallery-gallery-container">
           <div className="scrollGallery-gallery" ref={moviesGalleryRef}>
             {movies.map((movie, index) => (
-              <img
-                key={index}
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                alt={movie.title}
-              />
+              <div key={index} className="scrollGallery-image-wrapper">
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  alt={movie.title}
+                />
+                <div className="scrollGallery-overlay">
+                  <div className="scrollGallery-genres">
+                    {getGenres(movie.genre_ids)}
+                  </div>
+                  <div className="scrollGallery-rating">
+                    {renderStars(movie.vote_average)}
+                  </div>
+                  <button className="scrollGallery-trailer">
+                    Watch Trailer
+                  </button>
+                </div>
+              </div>
             ))}
           </div>
         </div>
       )}
 
       {images && (
-        <div className="gallery-container">
-          <div className="gallery" ref={imagesGalleryRef}>
+        <div className="scrollGallery-gallery-container">
+          <div className="scrollGallery-gallery" ref={imagesGalleryRef}>
             {images.map((image, index) => (
               <img
                 key={index}

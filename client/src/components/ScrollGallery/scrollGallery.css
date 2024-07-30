@@ -1,3 +1,4 @@
+/* scrollGallery.css */
 .scrollGallery-container {
   display: flex;
   align-items: center;
@@ -38,4 +39,62 @@
 
 .scrollGallery-gallery::-webkit-scrollbar {
   display: none;
+}
+
+.scrollGallery-image-wrapper {
+  position: relative;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+
+.scrollGallery-image-wrapper:hover {
+  transform: scaleX(1.1);
+}
+
+.scrollGallery-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 92%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.scrollGallery-image-wrapper:hover .scrollGallery-overlay {
+  opacity: 1;
+}
+
+.scrollGallery-genres {
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 25px;
+}
+
+.scrollGallery-rating {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.scrollGallery-star {
+  color: gold;
+  font-size: 40px;
+}
+
+.scrollGallery-trailer {
+  background-color: #e50914;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 25px;
+  transition: background-color 0.3s ease;
 }

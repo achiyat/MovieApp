@@ -1,12 +1,12 @@
-.carousel-inner {
+/* headerCarousel.css */
+.headerCarousel-inner {
   position: relative;
-  /* width: 400px; */
   max-width: 100%;
-  height: 600px; /* Adjust height as needed */
+  height: 600px;
   overflow: hidden;
 }
 
-.carousel-item {
+.headerCarousel-item {
   position: absolute;
   top: 0;
   left: 0;
@@ -20,13 +20,12 @@
   opacity: 1;
 }
 
-.carousel-item img {
+.headerCarousel-item img {
   width: 100%;
   height: 100%;
-  /*object-fit: cover;  Ensures the image covers the entire container */
 }
 
-.movie-details {
+.headerCarousel-movie-details {
   position: absolute;
   bottom: 20px;
   left: 70px;
@@ -34,55 +33,62 @@
   background-color: rgba(0, 0, 0, 0.5);
   color: #ffffff;
   padding: 10px;
-  display: none; /* Initially hidden */
+  display: none;
 }
 
 .active,
-.movie-details {
-  display: block; /* Show details for active item */
+.headerCarousel-movie-details {
+  display: block;
 }
 
-.movie-details h3 {
-  font-size: 18px;
+.headerCarousel-title {
+  font-size: 23px;
   margin-bottom: 5px;
 }
 
-.movie-details p {
+.headerCarousel-overview {
+  font-size: 17px;
+  margin: 10px 5px;
+}
+
+.headerCarousel-date {
   font-size: 14px;
   margin-bottom: 5px;
 }
 
-.rating {
+.headerCarousel-rating {
   display: flex;
   align-items: center;
-  margin-bottom: 5px;
+  justify-content: center;
 }
 
-.star {
-  color: #ffc107; /* Yellow color for stars */
+.headerCarousel-star {
+  color: gold;
+  font-size: 25px;
 }
 
-.tags {
-  font-size: 12px;
-  margin-bottom: 5px;
+.headerCarousel-tags {
+  font-size: 20px;
+  margin: 5px;
 }
 
-.watch-trailer {
-  margin-top: 10px;
-  background-color: #007bff;
-  color: #ffffff;
+.headerCarousel-trailer {
+  background-color: #e50914;
+  color: white;
   border: none;
-  padding: 5px 10px;
   cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 15px;
+  margin-top: 10px;
   outline: none;
   text-decoration: none;
 }
 
-.carousel-control {
+.headerCarousel-arrow {
   position: absolute;
   top: 49px;
   border: none;
-  /* background: rgba(0, 0, 0, 0.5); */
   color: #ffffff;
   font-size: 24px;
   width: 50px;
@@ -96,7 +102,7 @@
   transition: opacity 0.3s ease-in-out;
 }
 
-.carousel-control:hover {
+.headerCarousel-arrow:hover {
   opacity: 1;
 }
 

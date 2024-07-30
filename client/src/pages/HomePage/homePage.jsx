@@ -1,4 +1,4 @@
-// HomePage.jsx
+// homePage.jsx
 import React, { useEffect, useState } from "react";
 import {
   fetchMoviesByGenres,
@@ -36,7 +36,7 @@ export const HomePage = () => {
   }, []);
 
   return (
-    <div className="homePage">
+    <div className="homePage-container">
       <header className="homePage-header">
         <HeaderCarousel movies={nowPlayingMovies} />
       </header>
