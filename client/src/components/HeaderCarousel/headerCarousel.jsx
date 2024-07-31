@@ -8,6 +8,7 @@ import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 export const HeaderCarousel = ({ movies }) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -65,7 +66,11 @@ export const HeaderCarousel = ({ movies }) => {
                   .map((genreId) => genresDict[genreId])
                   .join(", ")}
               </p>
-              <button className="headerCarousel-trailer">Watch Trailer</button>
+              <Link to={`/movie/${movies[activeIndex].id}`}>
+                <button className="headerCarousel-trailer">
+                  Watch Trailer
+                </button>
+              </Link>
             </div>
           </div>
         ))}

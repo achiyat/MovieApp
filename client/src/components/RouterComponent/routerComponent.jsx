@@ -12,8 +12,6 @@ export const RouterComponent = () => {
         <Route exact path="/" element={<HomePage />} />
         <Route path="/movie/:id" element={<ByMoviePage />} />
         <Route path="/genre/:name" element={<GenrePage />} />
-        {/* <Route path="/movies" element={<MoviesPage />} />
-        <Route path="/series" element={<SeriesPage />} /> */}
       </Routes>
     </div>
   );

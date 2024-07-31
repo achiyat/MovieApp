@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from "react";
 import { genresDict } from "../../dictionaries/genresDict";
 import "./scrollGallery.css";
+import { Link } from "react-router-dom";
 
 export const ScrollGallery = ({ movies, images }) => {
   const moviesGalleryRef = useRef(null);
@@ -76,23 +77,25 @@ export const ScrollGallery = ({ movies, images }) => {
         <div className="scrollGallery-gallery-container">
           <div className="scrollGallery-gallery" ref={moviesGalleryRef}>
             {movies.map((movie, index) => (
-              <div key={index} className="scrollGallery-image-wrapper">
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  alt={movie.title}
-                />
-                <div className="scrollGallery-overlay">
-                  <div className="scrollGallery-genres">
-                    {getGenres(movie.genre_ids)}
+              <Link to={`/movie/${movie.id}`}>
+                <div key={index} className="scrollGallery-image-wrapper">
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    alt={movie.title}
+                  />
+                  <div className="scrollGallery-overlay">
+                    <div className="scrollGallery-genres">
+                      {getGenres(movie.genre_ids)}
+                    </div>
+                    <div className="scrollGallery-rating">
+                      {renderStars(movie.vote_average)}
+                    </div>
+                    <button className="scrollGallery-trailer">
+                      Watch Trailer
+                    </button>
                   </div>
-                  <div className="scrollGallery-rating">
-                    {renderStars(movie.vote_average)}
-                  </div>
-                  <button className="scrollGallery-trailer">
-                    Watch Trailer
-                  </button>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
