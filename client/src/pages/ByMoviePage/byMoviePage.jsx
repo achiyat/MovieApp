@@ -6,7 +6,7 @@ import { ScrollGallery } from "../../components/ScrollGallery/scrollGallery";
 import { useParams } from "react-router-dom";
 
 export const ByMoviePage = () => {
-  const { id } = useParams();
+  const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
 
   // Construct URLs
@@ -51,14 +51,13 @@ export const ByMoviePage = () => {
 
   useEffect(() => {
     const fetchMovies = async () => {
-      console.log(id);
-      const movieDetailsData = await fetchByMovieDetails(id);
+      const movieDetailsData = await fetchByMovieDetails(movieId);
       console.log(movieDetailsData);
       setMovieDetails(movieDetailsData);
     };
 
-    fetchMovies();
-  }, [id]);
+    if (movieId) return fetchMovies();
+  }, [movieId]);
 
   return (
     <>
@@ -75,12 +74,7 @@ export const ByMoviePage = () => {
             <img
               src={`${imgUrl}${movieDetails?.images.logos[0].file_path}`}
               alt="Movie Logo"
-              style={{
-                width: "200px",
-                height: "auto",
-                display: "block",
-                marginBottom: "10px",
-              }}
+              className="byMoviePage-logo"
             />
             <h1 className="byMoviePage-title">{movieDetails?.title}</h1>
             {movieDetails?.genres?.map((genre) => (
@@ -101,7 +95,7 @@ export const ByMoviePage = () => {
       </header>
 
       <main className="byMoviePage-main">
-        <div className="byMoviePage-trailer">
+        <section className="byMoviePage-trailer" id="trailer">
           <h2 className="byMoviePage-sectionTitle">Watch the Trailer</h2>
           {videoUrl && (
             <iframe
@@ -110,16 +104,16 @@ export const ByMoviePage = () => {
               allowFullScreen
             ></iframe>
           )}
-        </div>
+        </section>
 
-        <div className="byMoviePage-photoGallery">
+        <section className="byMoviePage-photoGallery" id="gallery">
           <h2 className="byMoviePage-sectionTitle">Photo Gallery</h2>
           <div className="byMoviePage-scroll">
             <ScrollGallery images={movieDetails?.images.backdrops} />
           </div>
-        </div>
+        </section>
 
-        <div className="byMoviePage-credits">
+        <section className="byMoviePage-credits" id="credits">
           <div className="byMoviePage-directorsList">
             <h2 className="byMoviePage-sectionTitle">Directors</h2>
             <ul>
@@ -148,7 +142,7 @@ export const ByMoviePage = () => {
               ))}
             </ul>
           </div>
-        </div>
+        </section>
       </main>
     </>
   );

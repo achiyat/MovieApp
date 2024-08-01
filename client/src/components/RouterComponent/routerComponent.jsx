@@ -10,7 +10,7 @@ export const RouterComponent = () => {
     <div className="router-component">
       <Routes>
         <Route exact path="/" element={<HomePage />} />
-        <Route path="/movie/:id" element={<ByMoviePage />} />
+        <Route path="/movie/:movieId" element={<ByMoviePage />} />
         <Route path="/genre/:name" element={<GenrePage />} />
       </Routes>
     </div>
