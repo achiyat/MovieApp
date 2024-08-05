@@ -1,0 +1,28 @@
+/* credits.css */
+.credits-directorsList,
+.credits-actorsList {
+  margin-bottom: 20px;
+}
+
+.credits-sectionTitle {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.credits-main-div li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  transition: background-color 0.2s;
+}
+
+.credits-main-div li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.credits-main-div img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}

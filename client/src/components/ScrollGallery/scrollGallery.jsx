@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from "react";
 import { genresDict } from "../../dictionaries/genresDict";
 import "./scrollGallery.css";
 import { Link } from "react-router-dom";
+import { imgUrl } from "../../Utils/movieUtils";
 
 export const ScrollGallery = ({ movies, images }) => {
   const moviesGalleryRef = useRef(null);
@@ -107,7 +108,7 @@ export const ScrollGallery = ({ movies, images }) => {
             {images.map((image, index) => (
               <img
                 key={index}
-                src={`https://image.tmdb.org/t/p/original${image.file_path}`}
+                src={`${imgUrl}${image.file_path}`}
                 alt={`Backdrop ${index + 1}`}
               />
             ))}

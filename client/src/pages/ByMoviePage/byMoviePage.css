@@ -1,79 +1,20 @@
 /* byMoviePage.css */
-.byMoviePage-header-container {
-  position: relative;
-  max-width: 100%;
-  height: 500px;
-  overflow: hidden;
-}
-
-.byMoviePage-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
-.byMoviePage-background img {
-  width: 100%;
-  height: 100%;
-}
-
-.byMoviePage-gradient-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 50px;
-  background: linear-gradient(to bottom, transparent, black);
-  z-index: 2;
-  pointer-events: none;
-}
-
-.byMoviePage-details-box {
-  position: relative;
-  z-index: 3;
-  padding: 20px;
-  background: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.02));
-  width: 600px;
-  height: 100%;
-  box-sizing: border-box;
-  color: white;
-}
-
-.byMoviePage-title {
-  font-size: 2.5em;
-  margin-bottom: 10px;
-}
-
-.byMoviePage-gunner {
-  display: inline-flex;
-  align-items: center;
-  height: 32px;
-  color: rgb(255, 255, 255);
-  background-color: rgb(255, 0, 0);
-  border-radius: 16px;
-  padding: 0 10px;
-  margin: 10px 5px;
-}
-
-.byMoviePage-info {
-  margin-bottom: 10px;
-}
-
-.byMoviePage-description {
-  margin-bottom: 20px;
-}
-
 .byMoviePage-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: white;
   padding: 20px;
+}
+
+.byMoviePage-main section {
+  width: 100%;
+  max-width: 1160px;
+  margin-bottom: 20px;
 }
 
 .byMoviePage-trailer {
   text-align: center;
-  margin-bottom: 20px;
 }
 
 .byMoviePage-trailer iframe {
@@ -90,7 +31,6 @@
 .byMoviePage-photoGallery {
   overflow-x: hidden;
   white-space: nowrap;
-  margin-bottom: 20px;
   position: relative;
 }
 
@@ -102,48 +42,9 @@
 }
 
 .byMoviePage-photoGallery img:hover {
-  transform: scaleX(1.1);
+  transform: scale(1.1);
 }
 
 .byMoviePage-scroll {
   height: 150px;
-}
-
-.byMoviePage-credits {
-  width: 350px;
-}
-
-.byMoviePage-directorsList,
-.byMoviePage-actorsList {
-  margin-bottom: 20px;
-}
-
-.byMoviePage-credits li {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-  transition: background-color 0.2s;
-}
-
-.byMoviePage-credits li:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-.byMoviePage-credits img {
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  margin-right: 10px;
-}
-
-.byMoviePage-star {
-  color: gold;
-  font-size: 20px;
-}
-
-.byMoviePage-logo {
-  width: 200px;
-  height: auto;
-  display: block;
-  margin-bottom: 10px;
 }

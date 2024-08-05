@@ -1,0 +1,22 @@
+/* similarMovies.css */
+.similarMovie-sectionTitle {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.similarMovie-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+}
+
+.similarMovie-img {
+  width: 85%;
+  height: 205px;
+  border: 4px solid #fff;
+  transition: border-color 0.3s ease;
+}
+
+.similarMovie-img:hover {
+  border-color: green;
+}

@@ -9,6 +9,7 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { imgUrl } from "../../Utils/movieUtils";
 
 export const HeaderCarousel = ({ movies }) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -50,10 +51,7 @@ export const HeaderCarousel = ({ movies }) => {
               index === activeIndex ? "active" : ""
             }`}
           >
-            <img
-              src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
-              alt={movie.title}
-            />
+            <img src={`${imgUrl}${movie.backdrop_path}`} alt={movie.title} />
             <div className="headerCarousel-movie-details">
               <h3 className="headerCarousel-title">{movie.title}</h3>
               <p className="headerCarousel-overview">{movie.overview}</p>
@@ -66,7 +64,7 @@ export const HeaderCarousel = ({ movies }) => {
                   .map((genreId) => genresDict[genreId])
                   .join(", ")}
               </p>
-              <Link to={`/movie/${movies[activeIndex].id}`}>
+              <Link to={`/movie/${movies[activeIndex]?.id}`}>
                 <button className="headerCarousel-trailer">
                   Watch Trailer
                 </button>
