@@ -45,7 +45,9 @@ export const InfoMovie = ({ movie }) => {
         )}
         <h1 className="infoMovie-title">{movie?.title}</h1>
         {movie?.genres?.map((genre) => (
-          <div className="infoMovie-gunner">{genre.name}</div>
+          <div key={genre.id} className="infoMovie-gunner">
+            {genre.name}
+          </div>
         ))}
         <div className="infoMovie-info">
           {goldenStars()} {formatMovieDetails()}

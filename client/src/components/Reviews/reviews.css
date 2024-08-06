@@ -1,1 +1,72 @@
 /* reviews.css */
+.reviews-container {
+  color: #717171;
+}
+
+.sectionTitle {
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.review {
+  margin-bottom: 20px;
+}
+
+.review-header span {
+  margin-right: 5px;
+}
+
+.review-author {
+  color: #bababa;
+  font-weight: 700;
+}
+
+.review-star {
+  color: gold;
+}
+
+.review-rating {
+  color: #ffffff;
+}
+
+.review-content {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.review-left {
+  text-align: left;
+}
+
+.review-read-more {
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.review-read-more:hover {
+  color: #ffffff;
+}
+
+.review-line {
+  border-bottom: 1px solid #2f2f2f;
+  margin-top: 10px;
+}
+
+.review-center {
+  text-align: center;
+}
+
+.no-reviews {
+  font-size: 25px;
+  margin-top: 20px;
+}
+
+.add-review-link {
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.add-review-link:hover {
+  text-decoration: underline;
+}

@@ -27,7 +27,7 @@ export const Comments = (props) => {
 
   return (
     <>
-      <h2 className="sectionTitle">{`Comments ${data.count}`}</h2>
+      <h2 className="sectionTitle">{`💬 ${data.count} Comments`}</h2>
       <div className="comments-scroll">
         {data?.comments.map((comment) => {
           return (
@@ -39,11 +39,13 @@ export const Comments = (props) => {
               />
               <div className="comments-details">
                 <div className="comments-header">
-                  <span className="comments-username">
-                    {comment.written_by}
-                  </span>
-                  <span className="comments-createdAt">
-                    {comment.created_at}
+                  <span>
+                    <span className="comments-username">
+                      {comment.written_by}
+                    </span>
+                    <span className="comments-createdAt">
+                      {comment.created_at}
+                    </span>
                   </span>
                   {renderHearts(comment.id, comment.like)}
                 </div>
@@ -52,6 +54,7 @@ export const Comments = (props) => {
             </div>
           );
         })}
+        <button className="load-more-button">Load more comments</button>
       </div>
     </>
   );
