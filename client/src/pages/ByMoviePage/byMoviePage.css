@@ -23,7 +23,7 @@
   height: 450px;
 }
 
-.byMoviePage-sectionTitle {
+section .sectionTitle {
   font-size: 2em;
   margin-bottom: 10px;
 }
@@ -47,4 +47,18 @@
 
 .byMoviePage-scroll {
   height: 150px;
+}
+
+/* flex */
+.flex-container {
+  display: flex;
+  flex-direction: row; /* Ensures items are in a row */
+  gap: 200px; /* Adjust the gap as needed */
+  align-items: flex-start; /* Aligns items at the start of the container */
+}
+
+.sub-container {
+  width: 400px;
+  padding-left: 15px;
+  padding-right: 15px;
 }

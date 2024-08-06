@@ -1,0 +1,13 @@
+export * from "./Comments/comments";
+export * from "./Credits/credits";
+export * from "./FeedbackFlex/feedbackFlex";
+export * from "./Footer/footer";
+export * from "./Header/header";
+export * from "./HeaderCarousel/headerCarousel";
+export * from "./InfoMovie/infoMovie";
+export * from "./InformationFlex/informationFlex";
+export * from "./Reviews/reviews";
+export * from "./RouterComponent/routerComponent";
+export * from "./ScrollGallery/scrollGallery";
+export * from "./SimilarMovies/similarMovies";
+// export * from "./";

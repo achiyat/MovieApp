@@ -5,8 +5,7 @@ import {
   fetchNowPlayingMovies,
 } from "../../services/services";
 import "./homePage.css";
-import { HeaderCarousel } from "../../components/HeaderCarousel/headerCarousel";
-import { ScrollGallery } from "../../components/ScrollGallery/scrollGallery";
+import { HeaderCarousel, ScrollGallery } from "../../components";
 
 export const HomePage = () => {
   const [nowPlayingMovies, setNowPlayingMovies] = useState([]);

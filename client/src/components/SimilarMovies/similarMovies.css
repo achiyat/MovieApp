@@ -1,9 +1,4 @@
 /* similarMovies.css */
-.similarMovie-sectionTitle {
-  font-size: 2em;
-  margin-bottom: 10px;
-}
-
 .similarMovie-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

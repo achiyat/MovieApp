@@ -5,11 +5,14 @@ import {
   fetchByMovieDetails,
   fetchSimilarMovies,
 } from "../../services/services";
-import { ScrollGallery } from "../../components/ScrollGallery/scrollGallery";
 import { useParams } from "react-router-dom";
-import { MainFlex } from "../../components/MainFlex/mainFlex";
-import { InfoMovie } from "../../components/InfoMovie/infoMovie";
 import { getTrailer, videoUrl } from "../../Utils/movieUtils";
+import {
+  FeedbackFlex,
+  InfoMovie,
+  InformationFlex,
+  ScrollGallery,
+} from "../../components";
 
 export const ByMoviePage = () => {
   const { movieId } = useParams();
@@ -44,7 +47,7 @@ export const ByMoviePage = () => {
 
       <main className="byMoviePage-main">
         <section className="byMoviePage-trailer" id="trailer">
-          <h2 className="byMoviePage-sectionTitle">Watch the Trailer</h2>
+          <h2 className="sectionTitle">Watch the Trailer</h2>
           {trailer && (
             <iframe
               title="Movie Trailer"
@@ -56,14 +59,15 @@ export const ByMoviePage = () => {
         </section>
 
         <section className="byMoviePage-photoGallery" id="gallery">
-          <h2 className="byMoviePage-sectionTitle">Photo Gallery</h2>
+          <h2 className="sectionTitle">Photo Gallery</h2>
           <div className="byMoviePage-scroll">
             <ScrollGallery images={movieInfo?.images.backdrops} />
           </div>
         </section>
 
-        <section id="credits&similar-movies">
-          <MainFlex _movie={movieInfo} _similar={similarMovies} />
+        <section id="flex-area">
+          <InformationFlex _movie={movieInfo} _similar={similarMovies} />
+          <FeedbackFlex />
         </section>
       </main>
     </>

@@ -55,3 +55,13 @@ export const fetchByMovieDetails = async (id) => {
     throw new Error("Failed to fetch movie details");
   }
 };
+
+export const fetchMovieReviews = async (id) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/movie-reviews/${id}`);
+    return handleResponse(response);
+  } catch (error) {
+    handleAxiosError(error);
+    throw new Error("Failed to fetch movie details");
+  }
+};

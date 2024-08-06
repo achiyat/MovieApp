@@ -1,0 +1,62 @@
+.comments-scroll {
+  overflow-y: auto;
+  scrollbar-width: none;
+  max-height: 700px;
+  position: relative;
+}
+
+.comments-card {
+  display: flex;
+  background: #171717;
+  padding: 20px;
+  margin-top: 5px;
+  overflow: hidden;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.comments-card:hover {
+  background: #222222; /* Slightly lighter background on hover */
+}
+
+.comments-profileImg {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.comments-details {
+  flex: 1;
+}
+
+.comments-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9em;
+  color: #ccc;
+  margin-bottom: 10px;
+}
+
+.comments-username {
+  font-weight: bold;
+}
+
+.comments-createdAt {
+  font-style: italic;
+}
+
+.comments-likes {
+  cursor: pointer;
+  color: #ff6f61; /* Heart color */
+  font-size: 1.2em;
+}
+
+.comments-likes:hover {
+  color: #ff3d3d; /* Slightly darker color on hover */
+}
+
+.comments-text {
+  font-size: 1em;
+  color: #fff;
+}

@@ -1,16 +1,16 @@
-// mainFlex.jsx
+// informationFlex.jsx
 import React from "react";
 import { Credits } from "../Credits/credits";
 import { SimilarMovies } from "../SimilarMovies/similarMovies";
-import "./mainFlex.css";
+import "./informationFlex.css";
 
-export const MainFlex = ({ _movie, _similar }) => {
+export const InformationFlex = ({ _movie, _similar }) => {
   return (
-    <div className="mainFlex-container">
-      <section className="credits-container" id="credits">
+    <div className="flex-container">
+      <section className="sub-container" id="credits">
         <Credits movie={_movie} />
       </section>
-      <section className="similar-container" id="similar Movies">
+      <section className="sub-container" id="similar Movies">
         <SimilarMovies similar={_similar} />
       </section>
     </div>

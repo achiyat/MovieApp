@@ -12,7 +12,7 @@ export const Credits = ({ movie }) => {
   return (
     <div className="credits-main-div">
       <div className="credits-directorsList">
-        <h2 className="credits-sectionTitle">Directors</h2>
+        <h2 className="sectionTitle">Directors</h2>
         <ul>
           {directors?.map((director) => {
             const image = director.profile_path
@@ -29,7 +29,7 @@ export const Credits = ({ movie }) => {
         </ul>
       </div>
       <div className="credits-actorsList">
-        <h2 className="credits-sectionTitle">Main Actors</h2>
+        <h2 className="sectionTitle">Main Actors</h2>
         <ul>
           {actors?.map((actor) => {
             const image = actor.profile_path
