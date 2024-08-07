@@ -1,10 +1,7 @@
 // byMoviePage.jsx
 import React, { useEffect, useState } from "react";
 import "./byMoviePage.css";
-import {
-  fetchByMovieDetails,
-  fetchSimilarMovies,
-} from "../../services/services";
+import { fetchByMovieDetails } from "../../services/services";
 import { useParams } from "react-router-dom";
 import { getTrailer, videoUrl } from "../../Utils/movieUtils";
 import {
@@ -17,21 +14,12 @@ import {
 export const ByMoviePage = () => {
   const { movieId } = useParams();
   const [movieInfo, setMovieInfo] = useState(null);
-  const [similarMovies, setSimilarMovies] = useState([]);
-
   const trailer = getTrailer(movieInfo);
 
   useEffect(() => {
     const fetchMovies = async () => {
       const movieInfoData = await fetchByMovieDetails(movieId);
-      console.log(movieInfoData);
       setMovieInfo(movieInfoData);
-
-      const similarMoviesData = await fetchSimilarMovies(movieId);
-      const sortedSimilarMovies = similarMoviesData
-        ?.sort((a, b) => b.vote_average - a.vote_average)
-        .slice(0, 4);
-      setSimilarMovies(sortedSimilarMovies);
     };
 
     if (movieId) {
@@ -66,7 +54,7 @@ export const ByMoviePage = () => {
         </section>
 
         <section id="flex-area">
-          <InformationFlex _movie={movieInfo} _similar={similarMovies} />
+          <InformationFlex _movie={movieInfo} />
           <FeedbackFlex />
         </section>
       </main>

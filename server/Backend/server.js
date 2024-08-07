@@ -109,6 +109,26 @@ app.get("/movie-reviews/:id", async (req, res) => {
   }
 });
 
+app.get("/movie-recommendations/:id", async (req, res) => {
+  const movieId = req.params.id;
+  try {
+    const response = await axios.get(
+      `${BASE_URL}/movie/${movieId}/recommendations`,
+      {
+        params: {
+          api_key: API_KEY,
+        },
+      }
+    );
+    res.json(response.data);
+  } catch (e) {
+    console.error(`Error fetching recommendations for movie ID ${movieId}:`, e);
+    res.status(500).json({
+      e: `Failed to fetch recommendations for movie ID ${movieId}`,
+    });
+  }
+});
+
 app.listen(port, () => {
   console.log(`App listening on port ${port}!`);
 });
