@@ -10,7 +10,7 @@ const renderSpan = (word) => <span>{word}</span>;
 
 export const Footer = () => {
   return (
-    <section>
+    <section className="footer-section">
       <div className="footer-up">
         <div className="footer-list">
           <h3 className="footer-title">About Us</h3>
