@@ -1,7 +1,104 @@
 /* footer.css */
-.app-footer {
-  padding: 10px 20px;
-  background-color: #333;
+section {
+  background-color: #000;
   color: #fff;
   text-align: center;
+}
+
+.footer-up {
+  display: flex;
+  justify-content: center;
+  max-width: 1160px;
+  margin: auto;
+  padding: 20px;
+  background-color: #000;
+}
+
+.footer-list {
+  text-align: left;
+  margin-right: 2%;
+  width: 20%;
+}
+
+.footer-list p {
+  margin: 0px;
+  margin-bottom: 10px;
+  display: block;
+  text-align: left;
+}
+
+.footer-list span {
+  font-size: 20px;
+  padding: 5px 10px;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.footer-list span:hover {
+  background-color: #444;
+  color: #fff;
+}
+
+.footer-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.footer-subscribe {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  text-align: left;
+}
+
+.footer-subscribe p {
+  margin-bottom: 10px;
+}
+
+.footer-form {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.footer-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+  flex: 1;
+}
+
+.footer-submit-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.footer-submit-button:hover {
+  background-color: #0056b3;
+}
+
+.footer-social {
+  display: flex;
+}
+
+.footer-social img {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.footer-down {
+  padding: 10px 20px;
+  background-color: #222;
+}
+
+.footer-down p {
+  margin: 0;
 }

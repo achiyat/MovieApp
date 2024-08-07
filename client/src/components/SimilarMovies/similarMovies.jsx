@@ -6,7 +6,7 @@ import {
   fetchMovieRecommendations,
   fetchSimilarMovies,
 } from "../../services/services";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export const SimilarMovies = (props) => {
   const [similarMovies, setSimilarMovies] = useState([]);
@@ -39,12 +39,14 @@ export const SimilarMovies = (props) => {
       <h2 className="sectionTitle">Similar Movies</h2>
       <div className="similarMovie-grid">
         {similarMovies?.map((movie) => (
-          <img
-            key={movie.id}
-            src={`${imgUrl}${movie.poster_path}`}
-            alt={movie.title}
-            className="similarMovie-img"
-          />
+          <Link to={`/movie/${movie?.id}`}>
+            <img
+              key={movie.id}
+              src={`${imgUrl}${movie.poster_path}`}
+              alt={movie.title}
+              className="similarMovie-img"
+            />
+          </Link>
         ))}
       </div>
     </div>
