@@ -1,4 +1,4 @@
-// informationFlex.jsx
+// client/src/components/InformationFlex/informationFlex.jsx
 import React from "react";
 import { Credits } from "../Credits/credits";
 import { SimilarMovies } from "../SimilarMovies/similarMovies";

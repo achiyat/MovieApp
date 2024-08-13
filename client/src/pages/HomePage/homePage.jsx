@@ -1,4 +1,4 @@
-// homePage.jsx
+// client/src/pages/HomePage/homePage.jsx
 import React, { useEffect, useState } from "react";
 import {
   fetchMoviesByGenres,

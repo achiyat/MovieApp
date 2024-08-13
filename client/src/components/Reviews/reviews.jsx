@@ -1,4 +1,4 @@
-// reviews.jsx
+// client/src/components/Reviews/reviews.jsx
 import React, { useEffect, useState } from "react";
 import "./reviews.css";
 import { useParams } from "react-router-dom";

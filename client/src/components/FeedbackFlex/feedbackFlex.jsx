@@ -1,4 +1,4 @@
-// feedbackFlex.jsx
+// client/src/components/FeedbackFlex/feedbackFlex.jsx
 import React from "react";
 import { Comments } from "../Comments/comments";
 import { Reviews } from "../Reviews/reviews";

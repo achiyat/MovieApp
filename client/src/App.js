@@ -1,4 +1,4 @@
-// App.jsx
+// client/src/App.js
 import React from "react";
 import "./App.css";
 import { Footer, Header, RouterComponent } from "./components";

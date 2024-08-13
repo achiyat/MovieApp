@@ -1,4 +1,4 @@
-// routerComponent.jsx
+// client/src/components/RouterComponent/routerComponent.jsx
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { HomePage } from "../../pages/HomePage/homePage";

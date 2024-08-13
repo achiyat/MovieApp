@@ -1,4 +1,4 @@
-// credits.jsx
+// client/src/components/Credits/credits.jsx
 import React from "react";
 import "./credits.css";
 import { getActors, getDirectors, imgUrl } from "../../Utils/movieUtils";

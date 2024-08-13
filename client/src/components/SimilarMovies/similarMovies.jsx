@@ -1,4 +1,4 @@
-// similarMovies.jsx
+// client/src/components/SimilarMovies/similarMovies.jsx
 import React, { useEffect, useState } from "react";
 import "./similarMovies.css";
 import { imgUrl, sortedMovies } from "../../Utils/movieUtils";

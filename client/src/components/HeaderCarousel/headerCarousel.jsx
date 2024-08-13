@@ -1,4 +1,4 @@
-// headerCarousel.jsx
+// client/src/components/HeaderCarousel/headerCarousel.jsx
 import React, { useState, useEffect } from "react";
 import "./headerCarousel.css";
 import { genresDict } from "../../dictionaries/genresDict";

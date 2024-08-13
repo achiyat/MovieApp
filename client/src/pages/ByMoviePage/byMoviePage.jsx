@@ -1,4 +1,4 @@
-// byMoviePage.jsx
+// client/src/pages/ByMoviePage/byMoviePage.jsx
 import React, { useEffect, useState } from "react";
 import "./byMoviePage.css";
 import { fetchByMovieDetails } from "../../services/services";
@@ -15,7 +15,6 @@ export const ByMoviePage = () => {
   const { movieId } = useParams();
   const [movieInfo, setMovieInfo] = useState(null);
   const trailer = getTrailer(movieInfo);
-  // console.log(movieInfo);
 
   useEffect(() => {
     const fetchMovies = async () => {

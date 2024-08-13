@@ -1,4 +1,4 @@
-// header.jsx
+// client/src/components/Header/header.jsx
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./header.css";

@@ -1,4 +1,4 @@
-// infoMovie.jsx
+// client/src/components/InfoMovie/infoMovie.jsx
 import React from "react";
 import "./infoMovie.css";
 import { getActors, getLogos, imgUrl } from "../../Utils/movieUtils";

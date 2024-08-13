@@ -1,4 +1,4 @@
-// footer.jsx
+// client/src/components/Footer/footer.jsx
 import React from "react";
 import "./footer.css";
 import facebook from "./../../media/images/facebook.png";

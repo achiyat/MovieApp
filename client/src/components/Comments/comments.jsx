@@ -1,4 +1,4 @@
-// comments.jsx
+// client/src/components/Comments/comments.jsx
 import React, { useState } from "react";
 import { commentsData as data } from "../../dictionaries/commentsData";
 import "./comments.css";

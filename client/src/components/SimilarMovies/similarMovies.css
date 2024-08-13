@@ -1,4 +1,4 @@
-/* similarMovies.css */
+/* client/src/components/SimilarMovies/similarMovies.css */
 .similarMovie-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

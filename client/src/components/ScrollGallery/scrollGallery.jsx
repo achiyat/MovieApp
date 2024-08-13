@@ -1,4 +1,4 @@
-// scrollGallery.jsx
+// client/src/components/ScrollGallery/scrollGallery.jsx
 import React, { useEffect, useRef } from "react";
 import { genresDict } from "../../dictionaries/genresDict";
 import "./scrollGallery.css";

@@ -17,15 +17,12 @@ export const GenrePage = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
 
-  console.log(genreId);
-
   useEffect(() => {
     const getMovies = async () => {
       const genreMoviesData = await fetchMoviesByGenres(genreId);
       setHeaderMovies(genreMoviesData);
 
       const genrePageData = await fetchMoviesGenrePage(genreId, currentPage);
-      // console.log(genrePageData);
       setMovies(genrePageData?.results);
       setTotalPages(genrePageData?.total_pages);
     };
