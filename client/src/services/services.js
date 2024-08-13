@@ -1,6 +1,10 @@
 // client\src\services.js
 import axios from "axios";
-import { handleAxiosError, handleResponse } from "../Utils/axiosMessage";
+import {
+  handleAxiosError,
+  handleResponse,
+  responseMessages,
+} from "../Utils/axiosMessage";
 
 const BASE_URL = "http://localhost:5000";
 
@@ -10,17 +14,6 @@ export const fetchNowPlayingMovies = async () => {
     return handleResponse(response);
   } catch (error) {
     handleAxiosError(error);
-    throw new Error("Failed to fetch popular movies");
-  }
-};
-
-export const fetchPopularMovies = async () => {
-  try {
-    const response = await axios.get(`${BASE_URL}/popular-movies`);
-    return handleResponse(response);
-  } catch (error) {
-    handleAxiosError(error);
-    throw new Error("Failed to fetch popular movies");
   }
 };
 
@@ -30,7 +23,6 @@ export const fetchSimilarMovies = async (id) => {
     return handleResponse(response);
   } catch (error) {
     handleAxiosError(error);
-    throw new Error("Failed to fetch similar movies");
   }
 };
 
@@ -42,7 +34,6 @@ export const fetchMoviesByGenres = async (genres) => {
     return handleResponse(response);
   } catch (error) {
     handleAxiosError(error);
-    throw new Error("Failed to fetch movies by genres");
   }
 };
 
@@ -52,7 +43,6 @@ export const fetchByMovieDetails = async (id) => {
     return handleResponse(response);
   } catch (error) {
     handleAxiosError(error);
-    throw new Error("Failed to fetch movie details");
   }
 };
 
@@ -62,16 +52,40 @@ export const fetchMovieReviews = async (id) => {
     return handleResponse(response);
   } catch (error) {
     handleAxiosError(error);
-    throw new Error("Failed to fetch movie details");
   }
 };
 
 export const fetchMovieRecommendations = async (id) => {
   try {
     const response = await axios.get(`${BASE_URL}/movie-recommendations/${id}`);
+    console.log(response);
     return handleResponse(response);
   } catch (error) {
     handleAxiosError(error);
-    throw new Error("Failed to fetch movie recommendations");
   }
 };
+
+export const fetchMoviesGenrePage = async (id, page = 1) => {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}/movie-genre-page/${id}/${page}`
+    );
+    const message =
+      responseMessages[response.status] ||
+      `Unexpected status: ${response.status}`;
+    console.log(`${message}. Status: ${response.status}`);
+    return response.data;
+  } catch (error) {
+    handleAxiosError(error);
+  }
+};
+
+// export const fetchPopularMovies = async () => {
+//   try {
+//     const response = await axios.get(`${BASE_URL}/popular-movies`);
+//     return handleResponse(response);
+//   } catch (error) {
+//     handleAxiosError(error);
+//     // throw new Error("Failed to fetch popular movies");
+//   }
+// };

@@ -6,6 +6,7 @@ import {
 } from "../../services/services";
 import "./homePage.css";
 import { HeaderCarousel, ScrollGallery } from "../../components";
+import { Link } from "react-router-dom";
 
 export const HomePage = () => {
   const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
@@ -42,7 +43,12 @@ export const HomePage = () => {
       <main className="homePage-main">
         {Object.keys(genreMovies).map((genreId) => (
           <div key={genreId}>
-            <h2>{genres[genreId]} Movies</h2>
+            <div className="homePage-genreHeader">
+              <h2>{genres[genreId]} Movies</h2>
+              <Link to={`/genre/${genreId}`}>
+                <span className="homePage-showMore">Show more</span>
+              </Link>
+            </div>
             <div className="homePage-scroll">
               <ScrollGallery movies={genreMovies[genreId]} />
             </div>

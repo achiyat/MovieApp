@@ -1,7 +1,7 @@
 // similarMovies.jsx
 import React, { useEffect, useState } from "react";
 import "./similarMovies.css";
-import { imgUrl } from "../../Utils/movieUtils";
+import { imgUrl, sortedMovies } from "../../Utils/movieUtils";
 import {
   fetchMovieRecommendations,
   fetchSimilarMovies,
@@ -15,16 +15,12 @@ export const SimilarMovies = (props) => {
   useEffect(() => {
     const fetchMovies = async () => {
       const similarMoviesData = await fetchSimilarMovies(movieId);
-      const sortedSimilarMovies = similarMoviesData
-        ?.sort((a, b) => b.vote_average - a.vote_average)
-        .slice(0, 4);
+      const sortedSimilarMovies = sortedMovies(similarMoviesData);
       setSimilarMovies(sortedSimilarMovies);
 
       if (similarMoviesData.length === 0) {
         const recsMoviesData = await fetchMovieRecommendations(movieId);
-        const sortedRecsMovies = recsMoviesData
-          ?.sort((a, b) => b.vote_average - a.vote_average)
-          .slice(0, 4);
+        const sortedRecsMovies = sortedMovies(recsMoviesData);
         setSimilarMovies(sortedRecsMovies);
       }
     };

@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from "react";
 import { genresDict } from "../../dictionaries/genresDict";
 import "./scrollGallery.css";
 import { Link } from "react-router-dom";
-import { imgUrl } from "../../Utils/movieUtils";
+import { imgUrl, renderStars } from "../../Utils/movieUtils";
 
 export const ScrollGallery = ({ movies, images }) => {
   const moviesGalleryRef = useRef(null);
@@ -55,15 +55,6 @@ export const ScrollGallery = ({ movies, images }) => {
     return genres.join(", ");
   };
 
-  const renderStars = (rating) => {
-    const stars = Math.round(rating / 2);
-    return Array.from({ length: 5 }, (_, index) => (
-      <span key={index} className="scrollGallery-star">
-        {index < stars ? "★" : "☆"}
-      </span>
-    ));
-  };
-
   return (
     <section className="scrollGallery-container">
       <button
@@ -78,7 +69,7 @@ export const ScrollGallery = ({ movies, images }) => {
         <div className="scrollGallery-gallery-container">
           <div className="scrollGallery-gallery" ref={moviesGalleryRef}>
             {movies.map((movie, index) => (
-              <Link to={`/movie/${movie.id}`}>
+              <Link to={`/movie/${movie.id}`} key={movie.id}>
                 <div key={index} className="scrollGallery-image-wrapper">
                   <img
                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -89,7 +80,7 @@ export const ScrollGallery = ({ movies, images }) => {
                       {getGenres(movie.genre_ids)}
                     </div>
                     <div className="scrollGallery-rating">
-                      {renderStars(movie.vote_average)}
+                      {renderStars(movie.vote_average, "scrollGallery-star")}
                     </div>
                     <button className="scrollGallery-trailer">
                       Watch Trailer

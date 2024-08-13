@@ -9,7 +9,7 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { imgUrl } from "../../Utils/movieUtils";
+import { imgUrl, renderStars } from "../../Utils/movieUtils";
 
 export const HeaderCarousel = ({ movies }) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -32,15 +32,6 @@ export const HeaderCarousel = ({ movies }) => {
     setActiveIndex((activeIndex + 1) % movies.length);
   };
 
-  const renderStars = (rating) => {
-    const stars = Math.round(rating / 2);
-    return Array.from({ length: 5 }, (_, index) => (
-      <span key={index} className="headerCarousel-star">
-        {index < stars ? "★" : "☆"}
-      </span>
-    ));
-  };
-
   return (
     <>
       <div className="headerCarousel-inner">
@@ -56,7 +47,7 @@ export const HeaderCarousel = ({ movies }) => {
               <h3 className="headerCarousel-title">{movie.title}</h3>
               <p className="headerCarousel-overview">{movie.overview}</p>
               <div className="headerCarousel-rating">
-                {renderStars(movie.vote_average)}
+                {renderStars(movie.vote_average, "headerCarousel-star")}
               </div>
               <p className="headerCarousel-date">{movie.release_date}</p>
               <p className="headerCarousel-tags">

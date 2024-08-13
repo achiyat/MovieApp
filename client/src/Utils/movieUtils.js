@@ -23,3 +23,17 @@ export const getTrailer = (movie) => {
 export const getLogos = (movie) => {
   return movie?.images.logos;
 };
+
+// Filtered top 4 movies
+export const sortedMovies = (movie) => {
+  return movie?.sort((a, b) => b.vote_average - a.vote_average).slice(0, 4);
+};
+
+export const renderStars = (rating, className = true) => {
+  const stars = Math.round(rating / 2);
+  return Array.from({ length: 5 }, (_, index) => (
+    <span key={index} className={className}>
+      {index < stars ? "★" : "☆"}
+    </span>
+  ));
+};

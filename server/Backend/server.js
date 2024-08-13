@@ -1,4 +1,4 @@
-// server\Backend\server.js
+// server/Backend/server.js
 import express from "express";
 import cors from "cors";
 import axios from "axios";
@@ -13,20 +13,6 @@ app.use(express.json());
 const port = process.env.PORT || 8000;
 const API_KEY = process.env.TMDB_API_KEY;
 const BASE_URL = "https://api.themoviedb.org/3";
-
-app.get("/popular-movies", async (req, res) => {
-  try {
-    const response = await axios.get(`${BASE_URL}/movie/popular`, {
-      params: {
-        api_key: API_KEY,
-      },
-    });
-    res.json(response.data);
-  } catch (error) {
-    console.error("Error fetching popular movies:", error);
-    res.status(500).json({ error: "Failed to fetch popular movies" });
-  }
-});
 
 app.get("/similar-movie/:id", async (req, res) => {
   const { id } = req.params;
@@ -50,6 +36,7 @@ app.get("/movies-by-genres", async (req, res) => {
       params: {
         api_key: API_KEY,
         with_genres: category,
+        sort_by: "popularity.desc",
       },
     });
     res.json(response.data);
@@ -65,6 +52,7 @@ app.get("/now-playing", async (req, res) => {
       params: {
         api_key: API_KEY,
         language: "en-US",
+        sort_by: "popularity.desc",
         page: 1,
         pageSize: 20,
       },
@@ -129,6 +117,44 @@ app.get("/movie-recommendations/:id", async (req, res) => {
   }
 });
 
+app.get("/movie-genre-page/:id/:page", async (req, res) => {
+  const genreId = req.params.id;
+  const page = req.params.page;
+
+  try {
+    const response = await axios.get(`${BASE_URL}/discover/movie`, {
+      params: {
+        api_key: API_KEY,
+        with_genres: genreId,
+        language: "en-US",
+        sort_by: "popularity.desc",
+        include_adult: false,
+        page: page,
+      },
+    });
+
+    res.json(response.data); // Send the movie data back to the client
+  } catch (e) {
+    console.error("Error fetching movies from TMDB:", e);
+    res.status(500).json({ e: "Failed to fetch movies" });
+  }
+});
+
 app.listen(port, () => {
   console.log(`App listening on port ${port}!`);
 });
+
+// app.get("/popular-movies", async (req, res) => {
+//   try {
+//     const response = await axios.get(`${BASE_URL}/movie/popular`, {
+//       params: {
+//         api_key: API_KEY,
+//         sort_by: "popularity.desc",
+//       },
+//     });
+//     res.json(response.data);
+//   } catch (error) {
+//     console.error("Error fetching popular movies:", error);
+//     res.status(500).json({ error: "Failed to fetch popular movies" });
+//   }
+// });

@@ -1,5 +1,5 @@
 // axiosMessage.js
-const responseMessages = {
+export const responseMessages = {
   200: "Success: OK",
   201: "Success: Created",
   204: "Success: No Content",
@@ -28,12 +28,12 @@ export const handleAxiosError = (error) => {
       errorMessages[error.response.status] ||
       `An error occurred: ${error.response.statusText}`;
     console.error(`${errorMessage}. Status: ${error.response.status}`);
-    throw new Error(errorMessage);
+    // throw new Error(errorMessage);
   } else if (error.request) {
     console.error("No response was received from the server", error.request);
-    throw new Error("No response was received from the server");
+    // throw new Error("No response was received from the server");
   } else {
     console.error("An error occurred in setting up the request", error.message);
-    throw new Error("An error occurred in setting up the request");
+    // throw new Error("An error occurred in setting up the request");
   }
 };

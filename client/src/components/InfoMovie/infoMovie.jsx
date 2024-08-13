@@ -2,6 +2,7 @@
 import React from "react";
 import "./infoMovie.css";
 import { getActors, getLogos, imgUrl } from "../../Utils/movieUtils";
+import { Link } from "react-router-dom";
 
 export const InfoMovie = ({ movie }) => {
   const actors = getActors(movie);
@@ -45,9 +46,9 @@ export const InfoMovie = ({ movie }) => {
         )}
         <h1 className="infoMovie-title">{movie?.title}</h1>
         {movie?.genres?.map((genre) => (
-          <div key={genre.id} className="infoMovie-gunner">
-            {genre.name}
-          </div>
+          <Link to={`/genre/${genre.id}`} key={genre.id}>
+            <div className="infoMovie-gunner">{genre.name}</div>
+          </Link>
         ))}
         <div className="infoMovie-info">
           {goldenStars()} {formatMovieDetails()}

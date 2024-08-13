@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./header.css";
-import { ByMoviePage } from "../../pages/ByMoviePage/byMoviePage";
 
 export const Header = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -25,7 +24,6 @@ export const Header = () => {
             </li>
             <li>
               <Link>Series</Link>
-              {/* <Link to="/movie/:533535">Series</Link> */}
             </li>
             <li>
               <Link>Movies</Link>

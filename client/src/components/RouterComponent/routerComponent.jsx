@@ -11,7 +11,7 @@ export const RouterComponent = () => {
       <Routes>
         <Route exact path="/" element={<HomePage />} />
         <Route path="/movie/:movieId" element={<ByMoviePage />} />
-        <Route path="/genre/:name" element={<GenrePage />} />
+        <Route path="/genre/:genreId" element={<GenrePage />} />
       </Routes>
     </div>
   );
