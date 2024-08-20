@@ -1,16 +1,10 @@
 // client/src/components/Header/header.jsx
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+import { Search } from "../Search/search";
 import "./header.css";
 
 export const Header = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
-
-  const handleSearch = async (e) => {
-    setSearchTerm(e.target.value);
-  };
-
   return (
     <header className="header-header">
       <nav>
@@ -34,26 +28,7 @@ export const Header = () => {
           </ul>
         </div>
         <div className="header-right-nav">
-          <div className="header-search-container">
-            <input
-              type="text"
-              placeholder="Search movies..."
-              value={searchTerm}
-              onChange={handleSearch}
-            />
-            {searchResults.length > 0 && (
-              <ul className="header-search-results">
-                {searchResults.slice(0, 5).map((movie) => (
-                  <li key={movie.id}>
-                    <Link to={`/movie/${movie.id}`}>
-                      <img src={movie.poster} alt={movie.title} />
-                      <span>{movie.title}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
+          <Search />
           <button className="header-sign-up-btn">Sign up now</button>
         </div>
       </nav>
