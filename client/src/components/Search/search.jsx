@@ -13,25 +13,29 @@ export const Search = (props) => {
   };
 
   return (
-    <div className="search-container">
-      <input
-        type="text"
-        placeholder="Search movies..."
-        value={searchTerm}
-        onChange={handleSearch}
-      />
-      {searchResults.length > 0 && (
-        <ul className="search-results">
-          {searchResults.slice(0, 5).map((movie) => (
-            <li key={movie.id}>
-              <Link to={`/movie/${movie.id}`}>
-                <img src={movie.poster} alt={movie.title} />
-                <span>{movie.title}</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
+    <div className="search-flex">
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Search movies..."
+          value={searchTerm}
+          onChange={handleSearch}
+          className="search-input"
+        />
+        {searchResults.length > 0 && (
+          <ul className="search-results">
+            {searchResults.slice(0, 5).map((movie) => (
+              <li key={movie.id}>
+                <Link to={`/movie/${movie.id}`}>
+                  <img src={movie.poster} alt={movie.title} />
+                  <span>{movie.title}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+      <button className="search-sign">Sign up now</button>
     </div>
   );
 };

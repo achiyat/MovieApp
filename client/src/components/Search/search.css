@@ -1,4 +1,9 @@
 /* client/src/components/Search/search.css */
+.search-flex {
+  display: flex;
+  align-items: center;
+}
+
 .search-container {
   position: relative;
 }
@@ -45,4 +50,19 @@
 
 .search-results span {
   font-size: 16px;
+}
+
+.search-sign {
+  margin-left: 20px;
+  padding: 5px 15px;
+  background-color: #e50914;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.search-sign:hover {
+  background-color: #cc0f19;
 }

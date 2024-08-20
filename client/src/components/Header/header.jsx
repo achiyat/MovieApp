@@ -8,7 +8,7 @@ export const Header = () => {
   return (
     <header className="header-header">
       <nav>
-        <div className="header-left-nav">
+        <div className="header-links">
           <Link to="/" className="header-app-name">
             Movie App
           </Link>
@@ -27,10 +27,7 @@ export const Header = () => {
             </li>
           </ul>
         </div>
-        <div className="header-right-nav">
-          <Search />
-          <button className="header-sign-up-btn">Sign up now</button>
-        </div>
+        <Search />
       </nav>
     </header>
   );

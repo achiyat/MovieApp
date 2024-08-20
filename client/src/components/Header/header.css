@@ -14,7 +14,7 @@
   justify-content: space-between;
 }
 
-.header-left-nav {
+.header-links {
   display: flex;
   align-items: center;
 }
@@ -27,39 +27,19 @@
   text-decoration: none;
 }
 
-.header-left-nav ul {
+.header-links ul {
   list-style: none;
   display: flex;
   margin: 0;
   padding: 0;
 }
 
-.header-left-nav li {
+.header-links li {
   margin: 0 10px;
 }
 
-.header-left-nav a {
+.header-links a {
   color: #e50914;
   text-decoration: none;
   font-size: 18px;
-}
-
-.header-right-nav {
-  display: flex;
-  align-items: center;
-}
-
-.header-sign-up-btn {
-  margin-left: 20px;
-  padding: 5px 15px;
-  background-color: #e50914;
-  color: white;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.header-sign-up-btn:hover {
-  background-color: #cc0f19;
 }
