@@ -1,22 +1,32 @@
 /* client/src/components/Footer/footer.css */
+
 .footer-section {
   color: #fff;
   text-align: center;
   background-color: #121212;
+  padding-top: 20px;
 }
 
 .footer-up {
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
   max-width: 1160px;
   margin: auto;
   padding: 20px;
 }
 
+.footer-lists {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
 .footer-list {
   text-align: left;
-  margin-right: 2%;
-  width: 20%;
+  flex: 1;
 }
 
 .footer-list a {
@@ -51,7 +61,8 @@
 .footer-subscribe {
   display: flex;
   flex-direction: column;
-  width: 40%;
+  width: 100%;
+  max-width: 300px;
   text-align: left;
 }
 
@@ -87,6 +98,8 @@
 
 .footer-social {
   display: flex;
+  justify-content: start;
+  margin-top: 10px;
 }
 
 .footer-social img {
@@ -104,4 +117,103 @@
 
 .footer-down p {
   margin: 0;
+}
+
+@media (max-width: 1281px) {
+  .footer-up {
+    max-width: 920px;
+  }
+
+  .footer-subscribe {
+    margin-left: 20px;
+  }
+}
+
+@media (max-width: 1025px) {
+  .footer-up {
+    max-width: 850px;
+  }
+}
+
+@media (max-width: 991px) {
+  .footer-up {
+    max-width: 920px;
+  }
+}
+
+@media (max-width: 890px) and (min-width: 769px) {
+  .footer-list span {
+    font-size: 18px;
+  }
+
+  .footer-subscribe {
+    max-width: 245px;
+  }
+
+  .footer-input {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-up {
+    flex-direction: column;
+    align-items: center;
+    max-width: 550px;
+  }
+
+  .footer-lists {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .footer-list {
+    flex: 1;
+    margin-bottom: 0;
+  }
+
+  .footer-subscribe {
+    max-width: 400px;
+    text-align: center;
+    margin: 0;
+    margin-top: 20px;
+  }
+
+  .footer-form {
+    flex-direction: column;
+  }
+
+  .footer-input {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .footer-social {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 569px) and (min-width: 522px) {
+  .footer-list span {
+    font-size: 18px;
+  }
+
+  .footer-title {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 522px) {
+  .footer-list span {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-input,
+  .footer-submit-button {
+    font-size: 16px;
+  }
 }
