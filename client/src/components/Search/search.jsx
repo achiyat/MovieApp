@@ -35,7 +35,7 @@ export const Search = (props) => {
           </ul>
         )}
       </div>
-      <button className="search-sign">Sign up now</button>
+      <button className="search-sign">Sign up</button>
     </div>
   );
 };

@@ -1,4 +1,3 @@
-/* client/src/components/Header/header.css */
 .header-header {
   background-color: #000;
   color: white;
@@ -27,19 +26,109 @@
   text-decoration: none;
 }
 
-.header-links ul {
+.header-menu-icon {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-top: 6px;
+}
+
+.header-nav-links {
   list-style: none;
   display: flex;
   margin: 0;
   padding: 0;
 }
 
-.header-links li {
+.header-nav-links li {
   margin: 0 10px;
 }
 
-.header-links a {
+.header-nav-links a {
   color: #e50914;
   text-decoration: none;
   font-size: 18px;
+}
+
+/* Responsive styles */
+@media (max-width: 810px) {
+  .header-app-name {
+    font-size: 20px;
+    margin-right: 10px;
+  }
+
+  .header-nav-links a {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) and (min-width: 650px) {
+  .search-container input {
+    width: 295px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-menu-icon {
+    display: block;
+    margin-right: 10px;
+  }
+
+  .header-app-name {
+    font-size: 24px;
+  }
+
+  .header-nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 100%;
+    background-color: #000;
+    text-align: center;
+    padding: 10px 0;
+    z-index: 1000;
+  }
+
+  .header-nav-links.open {
+    display: flex;
+  }
+
+  .header-nav-links li {
+    margin: 10px 0;
+  }
+}
+
+@media (max-width: 553px) {
+  .header-app-name {
+    font-size: 18px;
+  }
+
+  .search-container input,
+  .search-sign {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 481px) {
+  .header-menu-icon {
+    font-size: 20px;
+  }
+
+  .header-app-name {
+    font-size: 16px;
+  }
+
+  .search-container input,
+  .search-sign {
+    font-size: 14px;
+  }
+
+  .search-container input {
+    width: 126px;
+  }
 }
