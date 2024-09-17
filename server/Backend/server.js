@@ -140,21 +140,27 @@ app.get("/movie-genre-page/:id/:page", async (req, res) => {
   }
 });
 
+// Route to search movies
+app.get("/search-movies", async (req, res) => {
+  const { query } = req.query;
+
+  try {
+    const response = await axios.get(`${BASE_URL}/search/movie`, {
+      params: {
+        api_key: API_KEY,
+        query,
+        language: "en-US",
+        page: 1,
+        pageSize: 10,
+      },
+    });
+    res.json(response.data);
+  } catch (error) {
+    console.error("Error searching for movies:", error);
+    res.status(500).json({ error: "Failed to search movies" });
+  }
+});
+
 app.listen(port, () => {
   console.log(`App listening on port ${port}!`);
 });
-
-// app.get("/popular-movies", async (req, res) => {
-//   try {
-//     const response = await axios.get(`${BASE_URL}/movie/popular`, {
-//       params: {
-//         api_key: API_KEY,
-//         sort_by: "popularity.desc",
-//       },
-//     });
-//     res.json(response.data);
-//   } catch (error) {
-//     console.error("Error fetching popular movies:", error);
-//     res.status(500).json({ error: "Failed to fetch popular movies" });
-//   }
-// });

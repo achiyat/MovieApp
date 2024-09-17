@@ -80,12 +80,14 @@ export const fetchMoviesGenrePage = async (id, page = 1) => {
   }
 };
 
-// export const fetchPopularMovies = async () => {
-//   try {
-//     const response = await axios.get(`${BASE_URL}/popular-movies`);
-//     return handleResponse(response);
-//   } catch (error) {
-//     handleAxiosError(error);
-//     // throw new Error("Failed to fetch popular movies");
-//   }
-// };
+// Fetch search results for movies
+export const fetchSearchMovies = async (searchTerm) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/search-movies`, {
+      params: { query: searchTerm },
+    });
+    return handleResponse(response);
+  } catch (error) {
+    handleAxiosError(error);
+  }
+};
