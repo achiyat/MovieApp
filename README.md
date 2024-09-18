@@ -1,7 +1,7 @@
 # 💻 Movie App
 
 Here is a video presentation of the project:
-[Watch the video](https://video.2496369a3bc5f1504c69.mp4)
+[Watch the video](https://resume-achiya-tzuriel.netlify.app/static/media/movieApp.35901b5c580b5ad9d88b.mp4)
 
 Or you can visit my website and watch it there:
 [Click here](https://resume-achiya-tzuriel.netlify.app/)
@@ -25,14 +25,15 @@ The app is fully responsive, ensuring a seamless experience on desktops, tablets
 
 - **Frontend:** React, Router-DOM for page navigation and routing, CSS for styling
 - **Backend:** Node.js, Express
-- **API:** Pixabay API
+- **API:** The Movie Database (TMDB) API
 
 ## 📸 Image Gallery
 
 <p align="center">
-  <img src="https://home.jpg" width="350"/>
-  <img src="https://favorites.jpg" width="350"/>
-  <img src="https://responsive.jpg" width="300"/>
+  <img src="https://resume-achiya-tzuriel.netlify.app/static/media/movie1.4330e29e89c990899f2a.jpg" width="350"/>
+  <img src="https://resume-achiya-tzuriel.netlify.app/static/media/movie2.4fa5c7fbaab2265e3244.jpg" width="350"/>
+  <img src="https://resume-achiya-tzuriel.netlify.app/static/media/movie3.980045da10927a16237c.jpg" width="350"/>
+  <img src="https://resume-achiya-tzuriel.netlify.app/static/media/movie4.730c1d9de1df7d125627.jpg" width="350"/>
 </p>
 
 ## 📥 Installation
