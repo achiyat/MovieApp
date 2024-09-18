@@ -58,7 +58,6 @@ export const fetchMovieReviews = async (id) => {
 export const fetchMovieRecommendations = async (id) => {
   try {
     const response = await axios.get(`${BASE_URL}/movie-recommendations/${id}`);
-    console.log(response);
     return handleResponse(response);
   } catch (error) {
     handleAxiosError(error);

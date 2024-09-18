@@ -13,8 +13,10 @@ export const HomePage = () => {
   const [genreMovies, setGenreMovies] = useState({});
 
   const genres = {
-    28: "Action",
-    35: "Comedy",
+    12: "Adventure",
+    14: "Fantasy",
+    16: "Animation",
+    18: "Drama",
   };
 
   useEffect(() => {
@@ -26,7 +28,6 @@ export const HomePage = () => {
         const movies = await fetchMoviesByGenres(genreId);
         return { [genreId]: movies };
       });
-
       const genreData = await Promise.all(genreDataPromises);
       const genreMoviesData = Object.assign({}, ...genreData);
       setGenreMovies(genreMoviesData);

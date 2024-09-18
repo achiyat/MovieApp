@@ -18,7 +18,7 @@ export const SimilarMovies = (props) => {
       const sortedSimilarMovies = sortedMovies(similarMoviesData);
       setSimilarMovies(sortedSimilarMovies);
 
-      if (similarMoviesData.length === 0) {
+      if (similarMoviesData?.length === 0) {
         const recsMoviesData = await fetchMovieRecommendations(movieId);
         const sortedRecsMovies = sortedMovies(recsMoviesData);
         setSimilarMovies(sortedRecsMovies);
@@ -37,9 +37,9 @@ export const SimilarMovies = (props) => {
         {similarMovies?.map((movie) => (
           <Link to={`/movie/${movie?.id}`}>
             <img
-              key={movie.id}
-              src={`${imgUrl}${movie.poster_path}`}
-              alt={movie.title}
+              key={movie?.id}
+              src={`${imgUrl}${movie?.poster_path}`}
+              alt={movie?.title}
               className="similarMovie-img"
             />
           </Link>

@@ -21,7 +21,6 @@ export const Search = () => {
     // Only search when there are 3 or more characters
     if (term.length >= 3) {
       const data = await fetchSearchMovies(term);
-      console.log(data);
       setSearchResults(data);
     } else {
       setSearchResults([]);
