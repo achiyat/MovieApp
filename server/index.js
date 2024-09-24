@@ -17,7 +17,7 @@ const API_KEY = process.env.TMDB_API_KEY;
 const BASE_URL = "https://api.themoviedb.org/3";
 
 const clientPath = fileURLToPath(
-  new URL("../../client/build", import.meta.url)
+  new URL("../../src/client/build", import.meta.url)
 );
 
 app.use(express.static(clientPath));
