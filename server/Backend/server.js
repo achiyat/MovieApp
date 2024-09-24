@@ -2,7 +2,9 @@
 import express from "express";
 import cors from "cors";
 import axios from "axios";
+import path from "path";
 import "dotenv/config";
+import { fileURLToPath } from "node:url";
 
 const app = express();
 
@@ -13,6 +15,16 @@ app.use(express.json());
 const port = process.env.PORT || 8000;
 const API_KEY = process.env.TMDB_API_KEY;
 const BASE_URL = "https://api.themoviedb.org/3";
+
+const clientPath = fileURLToPath(
+  new URL("../../client/build", import.meta.url)
+);
+
+app.use(express.static(clientPath));
+// C:\Users\achiy\Desktop\MovieApp\MovieApp\client\build
+// app.get("/", function (req, res) {
+//   res.sendFile(path.join(clientPath, "index.html"));
+// });
 
 app.get("/similar-movie/:id", async (req, res) => {
   const { id } = req.params;
@@ -159,6 +171,10 @@ app.get("/search-movies", async (req, res) => {
     console.error("Error searching for movies:", error);
     res.status(500).json({ error: "Failed to search movies" });
   }
+});
+
+app.get("*", function (req, res) {
+  res.sendFile(path.join(clientPath, "index.html"));
 });
 
 app.listen(port, () => {
