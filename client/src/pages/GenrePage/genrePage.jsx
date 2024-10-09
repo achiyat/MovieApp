@@ -96,23 +96,23 @@ export const GenrePage = (props) => {
         <h1 className="genrePage-title-page">{genresDict[genreId]} Movies</h1>
         <div className="genrePage-grid">
           {movies?.map((movie) => (
-            <div key={movie.id} className="genrePage-card">
+            <div key={movie?.id} className="genrePage-card">
               <img
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                alt={movie.title}
+                src={`https://image.tmdb.org/t/p/w500${movie?.poster_path}`}
+                alt={movie?.title}
                 className="genrePage-poster"
               />
               <div className="genrePage-info">
                 <h2 className="genrePage-title">
-                  {movie.title} ({new Date(movie.release_date).getFullYear()})
+                  {movie?.title} ({new Date(movie?.release_date).getFullYear()})
                 </h2>
                 <p className="genrePage-overview">
                   {movie?.overview?.length > 150
-                    ? `${movie.overview.slice(0, 150)}...`
-                    : movie.overview}
+                    ? `${movie?.overview.slice(0, 150)}...`
+                    : movie?.overview}
                 </p>
                 <div className="genrePage-rating">
-                  {renderStars(movie.vote_average, "genrePage-star")}
+                  {renderStars(movie?.vote_average, "genrePage-star")}
                 </div>
                 <Link to={`/movie/${movie?.id}`}>
                   <button className="genrePage-trailer">Watch Trailer</button>

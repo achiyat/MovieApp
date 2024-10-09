@@ -69,18 +69,18 @@ export const ScrollGallery = ({ movies, images }) => {
         <div className="scrollGallery-gallery-container">
           <div className="scrollGallery-gallery" ref={moviesGalleryRef}>
             {movies.map((movie, index) => (
-              <Link to={`/movie/${movie.id}`} key={movie.id}>
+              <Link to={`/movie/${movie?.id}`} key={movie?.id}>
                 <div key={index} className="scrollGallery-image-wrapper">
                   <img
-                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                    alt={movie.title}
+                    src={`https://image.tmdb.org/t/p/w500${movie?.poster_path}`}
+                    alt={movie?.title}
                   />
                   <div className="scrollGallery-overlay">
                     <div className="scrollGallery-genres">
-                      {getGenres(movie.genre_ids)}
+                      {getGenres(movie?.genre_ids)}
                     </div>
                     <div className="scrollGallery-rating">
-                      {renderStars(movie.vote_average, "scrollGallery-star")}
+                      {renderStars(movie?.vote_average, "scrollGallery-star")}
                     </div>
                     <button className="scrollGallery-trailer">
                       Watch Trailer
