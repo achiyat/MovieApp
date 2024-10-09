@@ -1,8 +1,11 @@
-// server/Backend/server.js
+// server/index.js
 import express from "express";
 import cors from "cors";
 import axios from "axios";
 import "dotenv/config";
+
+import path from "path";
+import { fileURLToPath } from "node:url";
 
 const app = express();
 
@@ -13,6 +16,10 @@ app.use(express.json());
 const port = process.env.PORT || 8000;
 const API_KEY = process.env.TMDB_API_KEY;
 const BASE_URL = "https://api.themoviedb.org/3";
+
+const clientPath = fileURLToPath(new URL("../client", import.meta.url));
+
+app.use(express.static(clientPath));
 
 app.get("/similar-movie/:id", async (req, res) => {
   const { id } = req.params;
@@ -133,14 +140,13 @@ app.get("/movie-genre-page/:id/:page", async (req, res) => {
       },
     });
 
-    res.json(response.data); // Send the movie data back to the client
+    res.json(response.data);
   } catch (e) {
     console.error("Error fetching movies from TMDB:", e);
     res.status(500).json({ e: "Failed to fetch movies" });
   }
 });
 
-// Route to search movies
 app.get("/search-movies", async (req, res) => {
   const { query } = req.query;
 
@@ -161,6 +167,10 @@ app.get("/search-movies", async (req, res) => {
   }
 });
 
+app.get("*", function (req, res) {
+  res.sendFile(path.join(clientPath, "index.html"));
+});
+
 app.listen(port, () => {
-  console.log(`App listening on port ${port}!`);
+  console.log(`Server is running on http://localhost:${port}`);
 });
