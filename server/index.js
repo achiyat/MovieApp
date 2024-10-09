@@ -17,12 +17,9 @@ const port = process.env.PORT || 8000;
 const API_KEY = process.env.TMDB_API_KEY;
 const BASE_URL = "https://api.themoviedb.org/3";
 
-// const clientPath = fileURLToPath(new URL("../../dist", import.meta.url));
-// const clientPath = fileURLToPath(
-//   new URL("../dist", import.meta.url)
-// );
+const clientPath = fileURLToPath(new URL("../client", import.meta.url));
 
-// app.use(express.static(clientPath));
+app.use(express.static(clientPath));
 
 app.get("/similar-movie/:id", async (req, res) => {
   const { id } = req.params;
@@ -170,9 +167,9 @@ app.get("/search-movies", async (req, res) => {
   }
 });
 
-// app.get("*", function (req, res) {
-//   res.sendFile(path.join(clientPath, "index.html"));
-// });
+app.get("*", function (req, res) {
+  res.sendFile(path.join(clientPath, "index.html"));
+});
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
