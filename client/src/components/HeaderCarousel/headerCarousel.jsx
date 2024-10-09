@@ -13,23 +13,23 @@ import { imgUrl, renderStars } from "../../Utils/movieUtils";
 
 export const HeaderCarousel = ({ movies }) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [prevIndex, setPrevIndex] = useState(movies.length - 1);
+  const [prevIndex, setPrevIndex] = useState(movies?.length - 1);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setPrevIndex(activeIndex);
-      setActiveIndex((activeIndex + 1) % movies.length);
+      setActiveIndex((activeIndex + 1) % movies?.length);
     }, 5000); // Change slide every 5 seconds (adjust as needed)
 
     return () => clearInterval(interval);
-  }, [activeIndex, movies.length]);
+  }, [activeIndex, movies?.length]);
 
   const handlePrev = () => {
-    setActiveIndex((activeIndex - 1 + movies.length) % movies.length);
+    setActiveIndex((activeIndex - 1 + movies?.length) % movies?.length);
   };
 
   const handleNext = () => {
-    setActiveIndex((activeIndex + 1) % movies.length);
+    setActiveIndex((activeIndex + 1) % movies?.length);
   };
 
   return (
