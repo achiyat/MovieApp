@@ -22,7 +22,7 @@ export const Reviews = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       const movieReviewsData = await fetchMovieReviews(movieId);
-      setTotalReviews(movieReviewsData?.length);
+      setTotalReviews(movieReviewsData.length);
       setReviews(movieReviewsData.slice(0, 3));
     };
 

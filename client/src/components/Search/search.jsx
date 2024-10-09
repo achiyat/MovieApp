@@ -19,7 +19,7 @@ export const Search = () => {
     setSearchTerm(term);
 
     // Only search when there are 3 or more characters
-    if (term?.length >= 3) {
+    if (term.length >= 3) {
       const data = await fetchSearchMovies(term);
       setSearchResults(data);
     } else {
@@ -37,7 +37,7 @@ export const Search = () => {
           onChange={handleSearch}
           className="search-input"
         />
-        {searchResults?.length > 0 && (
+        {searchResults.length > 0 && (
           <ul className="search-results">
             {searchResults.slice(0, 10).map((movie) => (
               <li key={movie?.id}>
