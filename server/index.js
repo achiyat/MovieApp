@@ -38,6 +38,11 @@ app.get("/similar-movie/:id", async (req, res) => {
 
 app.get("/movies-by-genres", async (req, res) => {
   const { genres } = req.query;
+
+  if (!API_KEY) {
+    res.status(400).json({ error: "API key is missing or undefined" });
+  }
+
   try {
     const response = await axios.get(`${BASE_URL}/discover/movie`, {
       params: {
