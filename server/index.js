@@ -172,5 +172,6 @@ app.get("*", function (req, res) {
 });
 
 app.listen(port, () => {
+  console.log(` port=${port} ,API_KEY=${API_KEY}`);
   console.log(`Server is running on http://localhost:${port}`);
 });
