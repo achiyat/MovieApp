@@ -48,8 +48,12 @@ app.get("/movies-by-genres", async (req, res) => {
     });
     res.json(response.data);
   } catch (error) {
-    console.error(`Error fetching movies by genres ${genres}:`, error);
-    res.status(500).json({ error: "Failed to fetch movies by genres" });
+    if (!API_KEY) {
+      res.status(400).json({ error: "API key is missing or undefined" });
+    } else {
+      console.error(`Error fetching movies by genres ${genres}:`, error);
+      res.status(500).json({ error: "Failed to fetch movies by genres" });
+    }
   }
 });
 
@@ -66,8 +70,12 @@ app.get("/now-playing", async (req, res) => {
     });
     res.json(response.data);
   } catch (error) {
-    console.error("Error fetching popular movies:", error);
-    res.status(500).json({ error: "Failed to fetch popular movies" });
+    if (!API_KEY) {
+      res.status(400).json({ error: "API key is missing or undefined" });
+    } else {
+      console.error("Error fetching now playing movies:", error);
+      res.status(500).json({ error: "Failed to fetch now playing movies" });
+    }
   }
 });
 
@@ -172,6 +180,5 @@ app.get("*", function (req, res) {
 });
 
 app.listen(port, () => {
-  console.log(` port=${port} ,API_KEY=${API_KEY}`);
   console.log(`Server is running on http://localhost:${port}`);
 });
