@@ -39,6 +39,8 @@ app.get("/similar-movie/:id", async (req, res) => {
 app.get("/movies-by-genres", async (req, res) => {
   const { genres } = req.query;
 
+  console.log("genres");
+
   if (!API_KEY) {
     res.status(400).json({ error: "API key is missing or undefined" });
   }
@@ -63,6 +65,12 @@ app.get("/movies-by-genres", async (req, res) => {
 });
 
 app.get("/now-playing", async (req, res) => {
+  console.log("now-playing");
+
+  if (!API_KEY) {
+    res.status(400).json({ error: "API key is missing or undefined" });
+  }
+
   try {
     const response = await axios.get(`${BASE_URL}/movie/now_playing`, {
       params: {
@@ -185,5 +193,6 @@ app.get("*", function (req, res) {
 });
 
 app.listen(port, () => {
+  console.log(`api ${API_KEY}`);
   console.log(`Server is running on http://localhost:${port}`);
 });
