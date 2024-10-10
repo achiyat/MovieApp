@@ -51,7 +51,7 @@ export const ScrollGallery = ({ movies, images }) => {
   }, []);
 
   const getGenres = (genreIds) => {
-    const genres = genreIds.map((id) => genresDict[id]).slice(0, 3);
+    const genres = genreIds?.map((id) => genresDict[id]).slice(0, 3);
     return genres.join(", ");
   };
 
@@ -68,7 +68,7 @@ export const ScrollGallery = ({ movies, images }) => {
       {movies && (
         <div className="scrollGallery-gallery-container">
           <div className="scrollGallery-gallery" ref={moviesGalleryRef}>
-            {movies.map((movie, index) => (
+            {movies?.map((movie, index) => (
               <Link to={`/movie/${movie?.id}`} key={movie?.id}>
                 <div key={index} className="scrollGallery-image-wrapper">
                   <img
@@ -96,7 +96,7 @@ export const ScrollGallery = ({ movies, images }) => {
       {images && (
         <div className="scrollGallery-gallery-container">
           <div className="scrollGallery-gallery" ref={imagesGalleryRef}>
-            {images.map((image, index) => (
+            {images?.map((image, index) => (
               <img
                 key={index}
                 src={`${imgUrl}${image.file_path}`}

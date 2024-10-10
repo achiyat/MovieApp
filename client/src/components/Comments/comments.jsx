@@ -29,7 +29,7 @@ export const Comments = (props) => {
     <>
       <h2 className="sectionTitle">{`💬 ${data.count} Comments`}</h2>
       <div className="comments-scroll">
-        {data?.comments.map((comment) => {
+        {data?.comments?.map((comment) => {
           return (
             <div className="comments-card" key={comment.id}>
               <img

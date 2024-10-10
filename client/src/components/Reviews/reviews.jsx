@@ -39,7 +39,7 @@ export const Reviews = () => {
       </h2>
       {totalReviews > 0 ? (
         <>
-          {reviews.map((review, index) => (
+          {reviews?.map((review, index) => (
             <div key={review.id} className="review">
               <div className="review-header">
                 <span>Reviewed by</span>

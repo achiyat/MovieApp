@@ -39,7 +39,7 @@ export const Search = () => {
         />
         {searchResults?.length > 0 && (
           <ul className="search-results">
-            {searchResults.slice(0, 10).map((movie) => (
+            {searchResults.slice(0, 10)?.map((movie) => (
               <li key={movie?.id}>
                 <Link to={`/movie/${movie?.id}`} onClick={closeMenu}>
                   <img src={`${imgUrl}${movie?.poster_path}`} alt="" />

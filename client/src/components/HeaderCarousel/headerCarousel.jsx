@@ -35,7 +35,7 @@ export const HeaderCarousel = ({ movies }) => {
   return (
     <>
       <div className="headerCarousel-inner">
-        {movies.map((movie, index) => (
+        {movies?.map((movie, index) => (
           <div
             key={index}
             className={`headerCarousel-item ${
@@ -52,7 +52,7 @@ export const HeaderCarousel = ({ movies }) => {
               <p className="headerCarousel-date">{movie?.release_date}</p>
               <p className="headerCarousel-tags">
                 {movie?.genre_ids
-                  .map((genreId) => genresDict[genreId])
+                  ?.map((genreId) => genresDict[genreId])
                   .join(", ")}
               </p>
               <Link to={`/movie/${movies[activeIndex]?.id}`}>

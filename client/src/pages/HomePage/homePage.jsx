@@ -24,7 +24,7 @@ export const HomePage = () => {
       const nowPlayingMoviesData = await fetchNowPlayingMovies();
       setNowPlayingMovies(nowPlayingMoviesData);
 
-      const genreDataPromises = Object.keys(genres).map(async (genreId) => {
+      const genreDataPromises = Object.keys(genres)?.map(async (genreId) => {
         const movies = await fetchMoviesByGenres(genreId);
         return { [genreId]: movies };
       });
@@ -42,7 +42,7 @@ export const HomePage = () => {
         <HeaderCarousel movies={nowPlayingMovies} />
       </header>
       <main className="homePage-main">
-        {Object.keys(genreMovies).map((genreId) => (
+        {Object.keys(genreMovies)?.map((genreId) => (
           <div key={genreId}>
             <div className="homePage-genreHeader">
               <h2>{genres[genreId]} Movies</h2>
