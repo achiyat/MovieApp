@@ -11,6 +11,7 @@ const errorMessages = {
   401: "Unauthorized: Authentication is required and has failed or has not been provided.",
   403: "Forbidden: The server understood the request but refuses to authorize it.",
   404: "Not Found: The requested resource could not be found.",
+  460: "API key is missing or undefined.",
   500: "Internal Server Error: The server has encountered a situation it doesn't know how to handle.",
 };
 

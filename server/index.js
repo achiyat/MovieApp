@@ -21,7 +21,15 @@ const clientPath = fileURLToPath(new URL("../client", import.meta.url));
 
 app.use(express.static(clientPath));
 
-app.get("/similar-movie/:id", async (req, res) => {
+const requireApiKey = (req, res, next) => {
+  if (!API_KEY) {
+    console.log("Error: API key is missing or undefined");
+    return res.status(460).json({ error: "API key is missing or undefined" });
+  }
+  next();
+};
+
+app.get("/similar-movie/:id", requireApiKey, async (req, res) => {
   const { id } = req.params;
   try {
     const response = await axios.get(`${BASE_URL}/movie/${id}/similar`, {
@@ -36,14 +44,8 @@ app.get("/similar-movie/:id", async (req, res) => {
   }
 });
 
-app.get("/movies-by-genres", async (req, res) => {
+app.get("/movies-by-genres", requireApiKey, async (req, res) => {
   const { genres } = req.query;
-
-  console.log("genres");
-
-  if (!API_KEY) {
-    res.status(400).json({ error: "API key is missing or undefined" });
-  }
 
   try {
     const response = await axios.get(`${BASE_URL}/discover/movie`, {
@@ -64,13 +66,7 @@ app.get("/movies-by-genres", async (req, res) => {
   }
 });
 
-app.get("/now-playing", async (req, res) => {
-  console.log("now-playing");
-
-  if (!API_KEY) {
-    res.status(400).json({ error: "API key is missing or undefined" });
-  }
-
+app.get("/now-playing", requireApiKey, async (req, res) => {
   try {
     const response = await axios.get(`${BASE_URL}/movie/now_playing`, {
       params: {
@@ -92,7 +88,7 @@ app.get("/now-playing", async (req, res) => {
   }
 });
 
-app.get("/by-movie-details/:id", async (req, res) => {
+app.get("/by-movie-details/:id", requireApiKey, async (req, res) => {
   const movieId = req.params.id;
   try {
     const response = await axios.get(`${BASE_URL}/movie/${movieId}`, {
@@ -110,7 +106,7 @@ app.get("/by-movie-details/:id", async (req, res) => {
   }
 });
 
-app.get("/movie-reviews/:id", async (req, res) => {
+app.get("/movie-reviews/:id", requireApiKey, async (req, res) => {
   const movieId = req.params.id;
   try {
     const response = await axios.get(`${BASE_URL}/movie/${movieId}/reviews`, {
@@ -125,7 +121,7 @@ app.get("/movie-reviews/:id", async (req, res) => {
   }
 });
 
-app.get("/movie-recommendations/:id", async (req, res) => {
+app.get("/movie-recommendations/:id", requireApiKey, async (req, res) => {
   const movieId = req.params.id;
   try {
     const response = await axios.get(
@@ -145,7 +141,7 @@ app.get("/movie-recommendations/:id", async (req, res) => {
   }
 });
 
-app.get("/movie-genre-page/:id/:page", async (req, res) => {
+app.get("/movie-genre-page/:id/:page", requireApiKey, async (req, res) => {
   const genreId = req.params.id;
   const page = req.params.page;
 
@@ -168,7 +164,7 @@ app.get("/movie-genre-page/:id/:page", async (req, res) => {
   }
 });
 
-app.get("/search-movies", async (req, res) => {
+app.get("/search-movies", requireApiKey, async (req, res) => {
   const { query } = req.query;
 
   try {
@@ -193,6 +189,5 @@ app.get("*", function (req, res) {
 });
 
 app.listen(port, () => {
-  console.log(`api ${API_KEY}`);
   console.log(`Server is running on http://localhost:${port}`);
 });
