@@ -6,7 +6,7 @@ import {
   responseMessages,
 } from "../Utils/axiosMessage";
 
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "http://localhost:10000";
 
 export const fetchNowPlayingMovies = async () => {
   try {
