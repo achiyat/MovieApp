@@ -1,4 +1,3 @@
-// client/src/components/HeaderCarousel/headerCarousel.jsx
 import React, { useState, useEffect } from "react";
 import "./headerCarousel.css";
 import { genresDict } from "../../dictionaries/genresDict";
@@ -13,29 +12,29 @@ import { imgUrl, renderStars } from "../../Utils/movieUtils";
 
 export const HeaderCarousel = ({ movies }) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [prevIndex, setPrevIndex] = useState(movies.length - 1);
+  const [prevIndex, setPrevIndex] = useState(movies?.length - 1);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setPrevIndex(activeIndex);
-      setActiveIndex((activeIndex + 1) % movies.length);
+      setActiveIndex((activeIndex + 1) % movies?.length);
     }, 5000); // Change slide every 5 seconds (adjust as needed)
 
     return () => clearInterval(interval);
-  }, [activeIndex, movies.length]);
+  }, [activeIndex, movies?.length]);
 
   const handlePrev = () => {
-    setActiveIndex((activeIndex - 1 + movies.length) % movies.length);
+    setActiveIndex((activeIndex - 1 + movies?.length) % movies?.length);
   };
 
   const handleNext = () => {
-    setActiveIndex((activeIndex + 1) % movies.length);
+    setActiveIndex((activeIndex + 1) % movies?.length);
   };
 
   return (
     <>
       <div className="headerCarousel-inner">
-        {movies.map((movie, index) => (
+        {movies?.map((movie, index) => (
           <div
             key={index}
             className={`headerCarousel-item ${
@@ -45,16 +44,18 @@ export const HeaderCarousel = ({ movies }) => {
             <img src={`${imgUrl}${movie.backdrop_path}`} alt={movie.title} />
             <div className="headerCarousel-movie-details">
               <h3 className="headerCarousel-title">{movie.title}</h3>
-              <p className="headerCarousel-overview">{movie.overview}</p>
-              <div className="headerCarousel-rating">
-                {renderStars(movie.vote_average, "headerCarousel-star")}
+              <div className="headerCarousel-overview">{movie.overview}</div>
+              <div className="headerCarousel-details-row">
+                <div className="headerCarousel-rating">
+                  {renderStars(movie.vote_average, "headerCarousel-star")}
+                </div>
+                <p className="headerCarousel-date">{movie.release_date}</p>
+                <p className="headerCarousel-tags">
+                  {movie.genre_ids
+                    ?.map((genreId) => genresDict[genreId])
+                    .join(", ")}
+                </p>
               </div>
-              <p className="headerCarousel-date">{movie.release_date}</p>
-              <p className="headerCarousel-tags">
-                {movie.genre_ids
-                  .map((genreId) => genresDict[genreId])
-                  .join(", ")}
-              </p>
               <Link to={`/movie/${movies[activeIndex]?.id}`}>
                 <button className="headerCarousel-trailer">
                   Watch Trailer
