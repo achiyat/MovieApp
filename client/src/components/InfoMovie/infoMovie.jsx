@@ -1,7 +1,7 @@
 // client/src/components/InfoMovie/infoMovie.jsx
 import React from "react";
 import "./infoMovie.css";
-import { getActors, getLogos, imgUrl } from "../../Utils/movieUtils";
+import { getActors, getLogos, getYear, imgUrl } from "../../Utils/movieUtils";
 import { Link } from "react-router-dom";
 
 export const InfoMovie = ({ movie }) => {
@@ -21,7 +21,7 @@ export const InfoMovie = ({ movie }) => {
 
   const formatMovieDetails = () => {
     const rating = movie?.vote_average.toFixed(1);
-    const year = movie?.release_date.split("-")[0];
+    const year = getYear(movie?.release_date);
     const length = formatRuntime(movie?.runtime);
     return (
       <span>

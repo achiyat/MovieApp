@@ -37,3 +37,7 @@ export const renderStars = (rating, className = true) => {
     </span>
   ));
 };
+
+export const getYear = (date) => {
+  return date ? date.split("-")[0] : null;
+};
