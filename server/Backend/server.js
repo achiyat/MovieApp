@@ -133,14 +133,13 @@ app.get("/movie-genre-page/:id/:page", async (req, res) => {
       },
     });
 
-    res.json(response.data); // Send the movie data back to the client
+    res.json(response.data);
   } catch (e) {
     console.error("Error fetching movies from TMDB:", e);
     res.status(500).json({ e: "Failed to fetch movies" });
   }
 });
 
-// Route to search movies
 app.get("/search-movies", async (req, res) => {
   const { query } = req.query;
 
