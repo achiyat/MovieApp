@@ -115,7 +115,7 @@
   right: 0;
 }
 
-/* Responsiveness */
+/* Responsive styles */
 @media (max-width: 1024px) {
   .headerCarousel-inner,
   .headerCarousel-arrow {
