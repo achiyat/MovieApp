@@ -77,3 +77,48 @@
 .infoMovie-description {
   margin-bottom: 20px;
 }
+
+@media (max-width: 767px) {
+  .infoMovie-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .infoMovie-background {
+    width: 100%;
+    position: relative;
+  }
+
+  .infoMovie-gradient-overlay {
+    z-index: none;
+  }
+
+  .infoMovie-details-box {
+    width: 100%;
+  }
+
+  .infoMovie-logo {
+    display: none;
+  }
+
+  .infoMovie-title {
+    font-size: 2em;
+    margin: 10px 0px;
+  }
+
+  .infoMovie-details-box {
+    padding: 30px;
+  }
+}
+
+/* Screen width 420px and below */
+@media (max-width: 420px) {
+  .infoMovie-title {
+    font-size: 1.8em;
+  }
+
+  .infoMovie-details-box {
+    padding: 10px;
+  }
+}

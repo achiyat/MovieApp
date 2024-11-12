@@ -35,7 +35,7 @@ export const SimilarMovies = (props) => {
       <h2 className="sectionTitle">Similar Movies</h2>
       <div className="similarMovie-grid">
         {similarMovies?.map((movie) => (
-          <Link to={`/movie/${movie?.id}`}>
+          <Link to={`/movie/${movie?.id}`} key={movie.id}>
             <img
               key={movie.id}
               src={`${imgUrl}${movie.poster_path}`}

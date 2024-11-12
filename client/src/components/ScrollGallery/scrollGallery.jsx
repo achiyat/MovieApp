@@ -10,11 +10,9 @@ export const ScrollGallery = ({ movies, images }) => {
   const imagesGalleryRef = useRef(null);
 
   const scrollLeft = (refMovies) => {
-    const ref = refMovies ? refMovies : imagesGalleryRef;
-    if (ref && ref.current) {
-      const scrollAmount = refMovies ? scrollAmountImages(ref) : 286;
-      ref.current.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-    }
+    const ref = refMovies?.current ? refMovies : imagesGalleryRef;
+    const scrollAmount = refMovies ? scrollAmountImages(ref) : 286;
+    ref.current.scrollBy({ left: -scrollAmount, behavior: "smooth" });
   };
 
   const scrollRight = (refMovies) => {
@@ -48,7 +46,7 @@ export const ScrollGallery = ({ movies, images }) => {
       }, 5000);
       return () => clearInterval(interval);
     }
-  }, []);
+  }, [movies, images, moviesGalleryRef, imagesGalleryRef]);
 
   const getGenres = (genreIds) => {
     const genres = genreIds.map((id) => genresDict[id]).slice(0, 3);

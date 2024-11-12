@@ -18,6 +18,7 @@ export const HomePage = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const fetchMovies = async () => {
       const nowPlayingMoviesData = await fetchNowPlayingMovies();
       setNowPlayingMovies(nowPlayingMoviesData);

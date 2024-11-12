@@ -17,6 +17,7 @@ export const ByMoviePage = () => {
   const trailer = getTrailer(movieInfo);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const fetchMovies = async () => {
       const movieInfoData = await fetchByMovieDetails(movieId);
       setMovieInfo(movieInfoData);

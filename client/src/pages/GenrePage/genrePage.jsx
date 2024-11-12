@@ -17,19 +17,6 @@ export const GenrePage = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
 
-  useEffect(() => {
-    const getMovies = async () => {
-      const genreMoviesData = await fetchMoviesByGenres(genreId);
-      setHeaderMovies(genreMoviesData);
-
-      const genrePageData = await fetchMoviesGenrePage(genreId, currentPage);
-      setMovies(genrePageData?.results);
-      setTotalPages(genrePageData?.total_pages);
-    };
-
-    getMovies();
-  }, [genreId, currentPage]);
-
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
@@ -86,6 +73,20 @@ export const GenrePage = (props) => {
 
     return pages;
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    const getMovies = async () => {
+      const genreMoviesData = await fetchMoviesByGenres(genreId);
+      setHeaderMovies(genreMoviesData);
+
+      const genrePageData = await fetchMoviesGenrePage(genreId, currentPage);
+      setMovies(genrePageData?.results);
+      setTotalPages(genrePageData?.total_pages);
+    };
+
+    getMovies();
+  }, [genreId, currentPage]);
 
   return (
     <section id="genre page">
