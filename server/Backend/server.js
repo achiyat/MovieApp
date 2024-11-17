@@ -30,19 +30,19 @@ app.get("/similar-movie/:id", async (req, res) => {
 });
 
 app.get("/movies-by-genres", async (req, res) => {
-  const { category } = req.query;
+  const { genre } = req.query;
   try {
     const response = await axios.get(`${BASE_URL}/discover/movie`, {
       params: {
         api_key: API_KEY,
-        with_genres: category,
+        with_genres: genre,
         sort_by: "popularity.desc",
       },
     });
     res.json(response.data);
   } catch (error) {
-    console.error(`Error fetching movies by category ${category}:`, error);
-    res.status(500).json({ error: "Failed to fetch movies by category" });
+    console.error(`Error fetching movies by genre ${genre}:`, error);
+    res.status(500).json({ error: "Failed to fetch movies by genre" });
   }
 });
 

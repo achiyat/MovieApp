@@ -7,7 +7,7 @@ import {
 import "./genrePage.css";
 import { Link, useParams } from "react-router-dom";
 import { HeaderCarousel } from "../../components";
-import { renderStars } from "../../Utils/movieUtils";
+import { imgUrl, renderStars } from "../../Utils/movieUtils";
 import { genresDict } from "../../dictionaries/genresDict";
 
 export const GenrePage = (props) => {
@@ -99,7 +99,7 @@ export const GenrePage = (props) => {
           {movies?.map((movie) => (
             <div key={movie.id} className="genrePage-card">
               <img
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                src={`${imgUrl}${movie.poster_path}`}
                 alt={movie.title}
                 className="genrePage-poster"
               />

@@ -12,22 +12,20 @@ export const SimilarMovies = (props) => {
   const [similarMovies, setSimilarMovies] = useState([]);
   const { movieId } = useParams();
 
-  useEffect(() => {
-    const fetchMovies = async () => {
-      const similarMoviesData = await fetchSimilarMovies(movieId);
-      const sortedSimilarMovies = sortedMovies(similarMoviesData);
-      setSimilarMovies(sortedSimilarMovies);
+  const fetchMovies = async () => {
+    const similarMoviesData = (await fetchSimilarMovies(movieId)) || [];
+    const sortedSimilarMovies = sortedMovies(similarMoviesData) || [];
+    setSimilarMovies(sortedSimilarMovies);
 
-      if (similarMoviesData.length === 0) {
-        const recsMoviesData = await fetchMovieRecommendations(movieId);
-        const sortedRecsMovies = sortedMovies(recsMoviesData);
-        setSimilarMovies(sortedRecsMovies);
-      }
-    };
-
-    if (movieId) {
-      fetchMovies();
+    if (similarMoviesData?.length === 0) {
+      const recsMoviesData = (await fetchMovieRecommendations(movieId)) || [];
+      const sortedRecsMovies = sortedMovies(recsMoviesData) || [];
+      setSimilarMovies(sortedRecsMovies);
     }
+  };
+
+  useEffect(() => {
+    if (movieId) fetchMovies();
   }, [movieId]);
 
   return (
@@ -35,11 +33,10 @@ export const SimilarMovies = (props) => {
       <h2 className="sectionTitle">Similar Movies</h2>
       <div className="similarMovie-grid">
         {similarMovies?.map((movie) => (
-          <Link to={`/movie/${movie?.id}`} key={movie.id}>
+          <Link to={`/movie/${movie?.id}`} key={movie?.id}>
             <img
-              key={movie.id}
-              src={`${imgUrl}${movie.poster_path}`}
-              alt={movie.title}
+              src={`${imgUrl}${movie?.poster_path}`}
+              alt={movie?.title}
               className="similarMovie-img"
             />
           </Link>

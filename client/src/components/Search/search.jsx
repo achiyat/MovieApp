@@ -1,4 +1,3 @@
-// client/src/components/Search/search.jsx
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./search.css";
@@ -21,10 +20,7 @@ export const Search = () => {
     // Only search when there are 3 or more characters
     if (term.length >= 3) {
       const data = await fetchSearchMovies(term);
-      console.log(data);
-      setSearchResults(data);
-    } else {
-      setSearchResults([]);
+      setSearchResults(data ?? []);
     }
   };
 
@@ -38,12 +34,15 @@ export const Search = () => {
           onChange={handleSearch}
           className="search-input"
         />
-        {searchResults.length > 0 && (
+        {searchResults?.length > 0 && (
           <ul className="search-results">
             {searchResults.slice(0, 10).map((movie) => (
               <li key={movie?.id}>
                 <Link to={`/movie/${movie?.id}`} onClick={closeMenu}>
-                  <img src={`${imgUrl}${movie?.poster_path}`} alt="" />
+                  <img
+                    src={`${imgUrl}${movie?.poster_path}`}
+                    alt={movie?.title}
+                  />
                   <div className="search-content">
                     <span className="search-title">{movie?.title}</span>
                     <span className="search-year">
