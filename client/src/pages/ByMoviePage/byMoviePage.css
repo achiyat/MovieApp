@@ -52,9 +52,8 @@ section .sectionTitle {
 /* flex */
 .flex-container {
   display: flex;
-  flex-direction: row; /* Ensures items are in a row */
-  gap: 200px; /* Adjust the gap as needed */
-  align-items: flex-start; /* Aligns items at the start of the container */
+  flex-direction: row;
+  align-items: flex-start;
 }
 
 .sub-container {
@@ -62,9 +61,137 @@ section .sectionTitle {
   padding-right: 15px;
 }
 
-.flex-container-2 {
-  display: flex;
-  flex-direction: row; /* Ensures items are in a row */
-  gap: 20px; /* Adjust the gap as needed */
-  align-items: flex-start; /* Aligns items at the start of the container */
+.gap-info {
+  gap: 200px;
+}
+
+.gap-feedback {
+  gap: 20px;
+}
+
+@media (max-width: 1020px) {
+  .gap-info {
+    gap: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .flex-container {
+    flex-direction: column;
+  }
+
+  .sub-container {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .gap-info {
+    gap: 0px;
+  }
+
+  .gap-feedback {
+    gap: 0px;
+  }
+
+  .credits-main-div li {
+    width: 275px;
+  }
+}
+
+@media (max-width: 768px) and (min-width: 701px) {
+  .byMoviePage-main {
+    padding: 30px;
+  }
+
+  .gap-info {
+    flex-direction: row;
+  }
+
+  .gap-feedback {
+    max-width: 585px;
+    margin: auto;
+  }
+}
+
+@media (max-width: 768px) and (min-width: 700px) {
+  .comments-scroll {
+    width: 585px;
+  }
+
+  .comments-card {
+    width: 540px;
+  }
+
+  .review {
+    margin-bottom: 20px;
+    width: 585px;
+  }
+
+  .similarMovie-grid {
+    max-width: 315px;
+  }
+
+  .similarMovie-img {
+    width: 140px;
+    height: 220px;
+  }
+}
+
+@media (max-width: 700px) {
+  .gap-info,
+  .gap-feedback,
+  .similarMovie-grid,
+  .comments-scroll,
+  .review {
+    width: 420px;
+  }
+
+  .gap-info,
+  .gap-feedback {
+    margin: auto;
+  }
+
+  .similarMovie-grid {
+    grid-gap: 20px;
+  }
+
+  .similarMovie-img {
+    width: 180px;
+    height: 260px;
+  }
+
+  .comments-card {
+    width: 380px;
+  }
+
+  .review {
+    margin-bottom: 20px;
+  }
+
+  .credits-main-div li {
+    width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .similarMovie-grid {
+    grid-gap: none;
+  }
+
+  .gap-info,
+  .gap-feedback,
+  .similarMovie-grid,
+  .comments-scroll,
+  .review {
+    width: 380px;
+  }
+
+  .similarMovie-img {
+    width: 170px;
+    height: 250px;
+  }
+
+  .comments-card {
+    width: 335px;
+  }
 }

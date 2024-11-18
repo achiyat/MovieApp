@@ -26,10 +26,10 @@ export const fetchSimilarMovies = async (id) => {
   }
 };
 
-export const fetchMoviesByGenres = async (genres) => {
+export const fetchMoviesByGenres = async (genre) => {
   try {
     const response = await axios.get(`${BASE_URL}/movies-by-genres`, {
-      params: { genres },
+      params: { genre },
     });
     return handleResponse(response);
   } catch (error) {
@@ -58,6 +58,7 @@ export const fetchMovieReviews = async (id) => {
 export const fetchMovieRecommendations = async (id) => {
   try {
     const response = await axios.get(`${BASE_URL}/movie-recommendations/${id}`);
+    // console.log(response);
     return handleResponse(response);
   } catch (error) {
     handleAxiosError(error);
@@ -72,7 +73,7 @@ export const fetchMoviesGenrePage = async (id, page = 1) => {
     const message =
       responseMessages[response.status] ||
       `Unexpected status: ${response.status}`;
-    console.log(`${message}. Status: ${response.status}`);
+    // console.log(`${message}. Status: ${response.status}`);
     return response.data;
   } catch (error) {
     handleAxiosError(error);

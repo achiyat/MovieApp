@@ -1,83 +1,83 @@
 // client/src/components/HeaderCarousel/headerCarousel.jsx
 import React, { useState, useEffect } from "react";
-import "./headerCarousel.css";
-import { genresDict } from "../../dictionaries/genresDict";
-
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
-import { imgUrl, renderStars } from "../../Utils/movieUtils";
+import { imgUrl, renderStars, SLIDE_INTERVAL } from "../../Utils/movieUtils";
+import { genresDict } from "../../dictionaries/genresDict";
+import "./headerCarousel.css";
 
 export const HeaderCarousel = ({ movies }) => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [prevIndex, setPrevIndex] = useState(movies?.length - 1);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setPrevIndex(activeIndex);
-      setActiveIndex((activeIndex + 1) % movies?.length);
-    }, 5000); // Change slide every 5 seconds (adjust as needed)
+      handleNext();
+    }, SLIDE_INTERVAL);
 
     return () => clearInterval(interval);
-  }, [activeIndex, movies?.length]);
+  }, [currentIndex]);
 
   const handlePrev = () => {
-    setActiveIndex((activeIndex - 1 + movies?.length) % movies?.length);
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? movies?.length - 1 : prevIndex - 1
+    );
   };
 
   const handleNext = () => {
-    setActiveIndex((activeIndex + 1) % movies?.length);
+    setCurrentIndex((prevIndex) =>
+      prevIndex === movies?.length - 1 ? 0 : prevIndex + 1
+    );
   };
 
   return (
-    <>
-      <div className="headerCarousel-inner">
-        {movies.map((movie, index) => (
-          <div
-            key={index}
-            className={`headerCarousel-item ${
-              index === activeIndex ? "active" : ""
-            }`}
-          >
-            <img src={`${imgUrl}${movie?.backdrop_path}`} alt={movie?.title} />
-            <div className="headerCarousel-movie-details">
-              <h3 className="headerCarousel-title">{movie?.title}</h3>
-              <p className="headerCarousel-overview">{movie?.overview}</p>
+    <div className="headerCarousel-container">
+      {movies?.length > 0 && (
+        <div className="headerCarousel-slide">
+          <img
+            src={`${imgUrl}${movies[currentIndex]?.backdrop_path}`}
+            alt={movies[currentIndex]?.title}
+            className="headerCarousel-image"
+          />
+          <div className="headerCarousel-movie-details">
+            <h3 className="headerCarousel-title">
+              {movies[currentIndex]?.title}
+            </h3>
+            <div className="headerCarousel-overview">
+              {movies[currentIndex]?.overview}
+            </div>
+            <div className="headerCarousel-details-row">
               <div className="headerCarousel-rating">
-                {renderStars(movie?.vote_average, "headerCarousel-star")}
+                {renderStars(
+                  movies[currentIndex]?.vote_average,
+                  "headerCarousel-star"
+                )}
               </div>
-              <p className="headerCarousel-date">{movie?.release_date}</p>
               <p className="headerCarousel-tags">
-                {movie?.genre_ids
-                  .map((genreId) => genresDict[genreId])
+                {movies[currentIndex]?.genre_ids
+                  ?.map((genreId) => genresDict[genreId])
                   .join(", ")}
               </p>
-              <Link to={`/movie/${movies[activeIndex]?.id}`}>
-                <button className="headerCarousel-trailer">
-                  Watch Trailer
-                </button>
-              </Link>
+              <p className="headerCarousel-date">
+                {movies[currentIndex]?.release_date}
+              </p>
             </div>
+            <Link to={`/movie/${movies[currentIndex]?.id}`}>
+              <button className="headerCarousel-trailer">Watch Trailer</button>
+            </Link>
           </div>
-        ))}
-      </div>
-      <div
-        className="headerCarousel-arrow prev"
-        onClick={handlePrev}
-        aria-label="Previous"
-      >
-        <FontAwesomeIcon icon={faChevronLeft} />
-      </div>
-      <div
-        className="headerCarousel-arrow next"
-        onClick={handleNext}
-        aria-label="Next"
-      >
-        <FontAwesomeIcon icon={faChevronRight} />
-      </div>
-    </>
+          <button className="headerCarousel-arrow prev" onClick={handlePrev}>
+            <FontAwesomeIcon icon={faChevronLeft} />
+          </button>
+
+          <button className="headerCarousel-arrow next" onClick={handleNext}>
+            <FontAwesomeIcon icon={faChevronRight} />
+          </button>
+        </div>
+      )}
+    </div>
   );
 };

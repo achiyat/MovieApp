@@ -143,11 +143,12 @@ li a {
 
 @media (max-width: 481px) {
   .search-container input,
-  .search-sign {
+  .search-sign,
+  .search-title {
     font-size: 14px;
   }
 
   .search-container input {
-    width: 126px;
+    width: 150px;
   }
 }
