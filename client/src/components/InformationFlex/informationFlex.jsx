@@ -6,7 +6,7 @@ import "./informationFlex.css";
 
 export const InformationFlex = ({ _movie }) => {
   return (
-    <div className="flex-container">
+    <div className="flex-container gap-info">
       <section className="sub-container" id="credits">
         <Credits movie={_movie} />
       </section>

@@ -140,3 +140,72 @@
   margin: 0 5px;
   color: #cccccc;
 }
+
+/* Responsive styles */
+@media (min-width: 992px) {
+  .genrePage-title-page {
+    font-size: 48px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .genrePage-title-page {
+    font-size: 36px;
+  }
+
+  .genrePage-poster {
+    width: 100%;
+    height: auto;
+  }
+
+  .genrePage-trailer {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 767px) {
+  .genrePage-title-page {
+    font-size: 28px;
+    margin-bottom: 15px;
+  }
+
+  .genrePage-main {
+    padding: 10px;
+  }
+
+  .genrePage-grid {
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  }
+
+  .genrePage-poster {
+    width: 100%;
+    height: auto;
+  }
+
+  .genrePage-overview {
+    font-size: 12px;
+  }
+
+  .genrePage-trailer {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  .genrePage-pagination button {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 629px) {
+  .genrePage-overview {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 481px) {
+  .genrePage-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+}

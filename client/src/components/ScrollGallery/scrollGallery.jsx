@@ -1,119 +1,72 @@
-// client/src/components/ScrollGallery/scrollGallery.jsx
-import React, { useEffect, useRef } from "react";
-import { genresDict } from "../../dictionaries/genresDict";
+import React, { useRef, useEffect } from "react";
+import {
+  ArrowButton,
+  Gallery,
+  renderImageItem,
+  renderMovieItem,
+} from "./ScrollGalleryUtils";
+import { SLIDE_INTERVAL } from "../../Utils/movieUtils";
 import "./scrollGallery.css";
-import { Link } from "react-router-dom";
-import { imgUrl, renderStars } from "../../Utils/movieUtils";
 
-export const ScrollGallery = ({ movies, images }) => {
-  const moviesGalleryRef = useRef(null);
-  const imagesGalleryRef = useRef(null);
+export const ScrollGallery = ({ movies = [], images = [] }) => {
+  const galleryRef = useRef(null);
 
-  const scrollLeft = (refMovies) => {
-    const ref = refMovies ? refMovies : imagesGalleryRef;
-    if (ref && ref.current) {
-      const scrollAmount = refMovies ? scrollAmountImages(ref) : 286;
-      ref.current.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+  // Determine the items and rendering function based on the presence of movies or images
+  const items = movies?.length ? movies : images || [];
+  const renderItem = movies?.length
+    ? renderMovieItem
+    : images?.length
+    ? renderImageItem
+    : null;
+
+  const calcImageWidth = () => {
+    const firstChild = galleryRef?.current?.children[0];
+    if (movies?.length && firstChild) return firstChild?.offsetWidth ?? 220;
+
+    if (images?.length && firstChild) {
+      const imageWidth = firstChild?.offsetWidth ?? 266;
+      const marginRight =
+        parseInt(window.getComputedStyle(firstChild).marginRight) ?? 20;
+      return imageWidth + marginRight ?? 286;
     }
   };
 
-  const scrollRight = (refMovies) => {
-    const ref = refMovies?.current ? refMovies : imagesGalleryRef;
-    const scrollAmount = refMovies?.current ? scrollAmountImages(ref) : 286;
-    ref.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+  const calcScrollAmount = () => {
+    const containerWidth = galleryRef?.current?.offsetWidth ?? 0;
+    const imageWidth = calcImageWidth();
+    return Math.floor(containerWidth / imageWidth) * imageWidth;
   };
 
-  const scrollAmountImages = (ref) => {
-    const count = calculateVisibleCount(ref);
-    return count * 215;
+  const scrollLeft = () => {
+    if (galleryRef.current) {
+      const scrollAmount = calcScrollAmount();
+      galleryRef.current.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+    }
   };
 
-  const calculateVisibleCount = (ref) => {
-    const containerWidth = ref.current.offsetWidth;
-    const imageWidth = ref.current.children[0]?.offsetWidth + 15 || 215;
-    return Math.floor(containerWidth / imageWidth);
+  const scrollRight = () => {
+    if (galleryRef.current) {
+      const scrollAmount = calcScrollAmount();
+      galleryRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    }
   };
 
   useEffect(() => {
-    if (moviesGalleryRef.current) {
+    if (items?.length > 0 && galleryRef.current) {
+      const imageWidth = calcImageWidth();
       const interval = setInterval(() => {
-        moviesGalleryRef.current.scrollBy({ left: 215, behavior: "smooth" });
-      }, 5000);
+        galleryRef.current.scrollBy({ left: imageWidth, behavior: "smooth" });
+      }, SLIDE_INTERVAL);
+
       return () => clearInterval(interval);
     }
-
-    if (imagesGalleryRef.current) {
-      const interval = setInterval(() => {
-        imagesGalleryRef.current.scrollBy({ left: 286, behavior: "smooth" });
-      }, 5000);
-      return () => clearInterval(interval);
-    }
-  }, []);
-
-  const getGenres = (genreIds) => {
-    const genres = genreIds?.map((id) => genresDict[id]).slice(0, 3);
-    return genres.join(", ");
-  };
+  }, [items]);
 
   return (
     <section className="scrollGallery-container">
-      <button
-        className="scrollGallery-arrow"
-        onClick={() => scrollLeft(moviesGalleryRef)}
-        aria-label="Scroll left"
-      >
-        <span>◀</span>
-      </button>
-
-      {movies && (
-        <div className="scrollGallery-gallery-container">
-          <div className="scrollGallery-gallery" ref={moviesGalleryRef}>
-            {movies?.map((movie, index) => (
-              <Link to={`/movie/${movie?.id}`} key={movie?.id}>
-                <div key={index} className="scrollGallery-image-wrapper">
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500${movie?.poster_path}`}
-                    alt={movie?.title}
-                  />
-                  <div className="scrollGallery-overlay">
-                    <div className="scrollGallery-genres">
-                      {getGenres(movie?.genre_ids)}
-                    </div>
-                    <div className="scrollGallery-rating">
-                      {renderStars(movie?.vote_average, "scrollGallery-star")}
-                    </div>
-                    <button className="scrollGallery-trailer">
-                      Watch Trailer
-                    </button>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {images && (
-        <div className="scrollGallery-gallery-container">
-          <div className="scrollGallery-gallery" ref={imagesGalleryRef}>
-            {images?.map((image, index) => (
-              <img
-                key={index}
-                src={`${imgUrl}${image.file_path}`}
-                alt={`Backdrop ${index + 1}`}
-              />
-            ))}
-          </div>
-        </div>
-      )}
-
-      <button
-        className="scrollGallery-arrow"
-        onClick={() => scrollRight(moviesGalleryRef)}
-        aria-label="Scroll right"
-      >
-        <span>▶</span>
-      </button>
+      <ArrowButton direction="left" onClick={scrollLeft} />
+      <Gallery items={items} renderItem={renderItem} galleryRef={galleryRef} />
+      <ArrowButton direction="right" onClick={scrollRight} />
     </section>
   );
 };

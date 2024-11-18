@@ -15,14 +15,14 @@ export const Credits = ({ movie }) => {
         <h2 className="sectionTitle">Directors</h2>
         <ul>
           {directors?.map((director) => {
-            const image = director?.profile_path
-              ? `${imgUrl}${director?.profile_path}`
+            const image = director.profile_path
+              ? `${imgUrl}${director.profile_path}`
               : profile;
 
             return (
-              <li key={director?.id}>
-                <img src={image} alt={director?.name} />
-                <span>{director?.name}</span>
+              <li key={director.id}>
+                <img src={image} alt={director.name} />
+                <span>{director.name}</span>
               </li>
             );
           })}
@@ -32,14 +32,14 @@ export const Credits = ({ movie }) => {
         <h2 className="sectionTitle">Main Actors</h2>
         <ul>
           {actors?.map((actor) => {
-            const image = actor?.profile_path
-              ? `${imgUrl}${actor?.profile_path}`
+            const image = actor.profile_path
+              ? `${imgUrl}${actor.profile_path}`
               : profile;
 
             return (
-              <li key={actor?.id}>
-                <img src={image} alt={actor?.name} />
-                <span>{actor?.name}</span>
+              <li key={actor.id}>
+                <img src={image} alt={actor.name} />
+                <span>{actor.name}</span>
               </li>
             );
           })}

@@ -3,6 +3,7 @@
 // Construct URLs
 export const imgUrl = "https://image.tmdb.org/t/p/original";
 export const videoUrl = `https://www.youtube.com/embed/`;
+export const SLIDE_INTERVAL = 5000;
 
 // Filtered main actors (those with lowest order values, up to 5)
 export const getActors = (movie) => {

@@ -56,7 +56,7 @@ export const InfoMovie = ({ movie }) => {
         <div className="infoMovie-description">{movie?.overview}</div>
         <div>
           <strong>Starring:</strong>{" "}
-          {actors?.map((actor) => actor?.name).join(", ")}
+          {actors?.map((actor) => actor.name).join(", ")}
         </div>
       </div>
     </section>

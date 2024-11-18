@@ -6,7 +6,7 @@ import "./feedbackFlex.css";
 
 export const FeedbackFlex = (props) => {
   return (
-    <div className="flex-container-2">
+    <div className="flex-container gap-feedback">
       <section className="sub-container" id="comments">
         <Comments />
       </section>

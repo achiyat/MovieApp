@@ -1,38 +1,86 @@
 // client/src/pages/HomePage/homePage.jsx
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   fetchMoviesByGenres,
   fetchNowPlayingMovies,
 } from "../../services/services";
-import "./homePage.css";
 import { HeaderCarousel, ScrollGallery } from "../../components";
-import { Link } from "react-router-dom";
+import { genresDict } from "../../dictionaries/genresDict";
+import "./homePage.css";
 
 export const HomePage = () => {
   const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
   const [genreMovies, setGenreMovies] = useState({});
 
-  const genres = {
-    12: "Adventure",
-    14: "Fantasy",
-    16: "Animation",
-    18: "Drama",
+  const storeInLocalStorage = (key, data) => {
+    console.log("storeInLocalStorage");
+    try {
+      localStorage.setItem(key, JSON.stringify(data));
+    } catch (error) {
+      if (error.name === "QuotaExceededError") {
+        console.error("LocalStorage quota exceeded, falling back to API call.");
+        // Optionally, you can clear localStorage or limit data size here
+      } else {
+        console.error("Error storing data in localStorage", error);
+      }
+    }
+  };
+
+  // Usage in your fetchMovies function:
+  const fetchMovies = async () => {
+    // Check if the nowPlayingMovies data is in localStorage
+    const nowPlayingMoviesData = JSON.parse(
+      localStorage.getItem("nowPlayingMovies")
+    );
+    if (nowPlayingMoviesData) {
+      setNowPlayingMovies(nowPlayingMoviesData);
+      console.log("localStorage nowPlaying");
+    } else {
+      const fetchedNowPlayingMovies = await fetchNowPlayingMovies();
+      setNowPlayingMovies(fetchedNowPlayingMovies || []);
+
+      // Try storing in localStorage with error handling
+      if (fetchedNowPlayingMovies?.length > 0) {
+        console.log(fetchedNowPlayingMovies?.length);
+        storeInLocalStorage("nowPlayingMovies", fetchedNowPlayingMovies);
+      }
+
+      if (!fetchedNowPlayingMovies) {
+        console.log("nowPlayingMovies none");
+      }
+    }
+
+    // Check if the genre movies data is in localStorage
+    const genreMoviesData = JSON.parse(localStorage.getItem("genreMovies"));
+    if (genreMoviesData) {
+      setGenreMovies(genreMoviesData);
+      console.log("localStorage genre");
+    } else {
+      const genreDataPromises = Object.keys(genresDict)?.map(
+        async (genreId) => {
+          const movies = await fetchMoviesByGenres(genreId);
+          return { [genreId]: movies || [] };
+        }
+      );
+
+      const genreData = await Promise.all(genreDataPromises);
+      const genreMoviesDataFetched = Object.assign({}, ...genreData);
+      setGenreMovies(genreMoviesDataFetched);
+      // Try storing in localStorage with error handling
+      if (Object.keys(genreMoviesDataFetched).length > 0) {
+        console.log(Object.keys(genreMoviesDataFetched).length);
+        storeInLocalStorage("genreMovies", genreMoviesDataFetched);
+      }
+
+      if (!genreMoviesDataFetched) {
+        console.log("genreMovies none");
+      }
+    }
   };
 
   useEffect(() => {
-    const fetchMovies = async () => {
-      const nowPlayingMoviesData = await fetchNowPlayingMovies();
-      setNowPlayingMovies(nowPlayingMoviesData);
-
-      const genreDataPromises = Object.keys(genres)?.map(async (genreId) => {
-        const movies = await fetchMoviesByGenres(genreId);
-        return { [genreId]: movies };
-      });
-      const genreData = await Promise.all(genreDataPromises);
-      const genreMoviesData = Object.assign({}, ...genreData);
-      setGenreMovies(genreMoviesData);
-    };
-
+    window.scrollTo(0, 0);
     fetchMovies();
   }, []);
 
@@ -45,13 +93,13 @@ export const HomePage = () => {
         {Object.keys(genreMovies)?.map((genreId) => (
           <div key={genreId}>
             <div className="homePage-genreHeader">
-              <h2>{genres[genreId]} Movies</h2>
+              <h2>{genresDict?.[genreId]} Movies</h2>
               <Link to={`/genre/${genreId}`}>
                 <span className="homePage-showMore">Show more</span>
               </Link>
             </div>
             <div className="homePage-scroll">
-              <ScrollGallery movies={genreMovies[genreId]} />
+              <ScrollGallery movies={genreMovies?.[genreId]} />
             </div>
           </div>
         ))}

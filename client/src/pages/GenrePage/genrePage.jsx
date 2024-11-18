@@ -7,7 +7,7 @@ import {
 import "./genrePage.css";
 import { Link, useParams } from "react-router-dom";
 import { HeaderCarousel } from "../../components";
-import { renderStars } from "../../Utils/movieUtils";
+import { imgUrl, renderStars } from "../../Utils/movieUtils";
 import { genresDict } from "../../dictionaries/genresDict";
 
 export const GenrePage = (props) => {
@@ -16,19 +16,6 @@ export const GenrePage = (props) => {
   const [headerMovies, setHeaderMovies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-
-  useEffect(() => {
-    const getMovies = async () => {
-      const genreMoviesData = await fetchMoviesByGenres(genreId);
-      setHeaderMovies(genreMoviesData);
-
-      const genrePageData = await fetchMoviesGenrePage(genreId, currentPage);
-      setMovies(genrePageData?.results);
-      setTotalPages(genrePageData?.total_pages);
-    };
-
-    getMovies();
-  }, [genreId, currentPage]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -87,6 +74,20 @@ export const GenrePage = (props) => {
     return pages;
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    const getMovies = async () => {
+      const genreMoviesData = await fetchMoviesByGenres(genreId);
+      setHeaderMovies(genreMoviesData);
+
+      const genrePageData = await fetchMoviesGenrePage(genreId, currentPage);
+      setMovies(genrePageData?.results);
+      setTotalPages(genrePageData?.total_pages);
+    };
+
+    getMovies();
+  }, [genreId, currentPage]);
+
   return (
     <section id="genre page">
       <header className="genrePage-header">
@@ -96,23 +97,23 @@ export const GenrePage = (props) => {
         <h1 className="genrePage-title-page">{genresDict[genreId]} Movies</h1>
         <div className="genrePage-grid">
           {movies?.map((movie) => (
-            <div key={movie?.id} className="genrePage-card">
+            <div key={movie.id} className="genrePage-card">
               <img
-                src={`https://image.tmdb.org/t/p/w500${movie?.poster_path}`}
-                alt={movie?.title}
+                src={`${imgUrl}${movie.poster_path}`}
+                alt={movie.title}
                 className="genrePage-poster"
               />
               <div className="genrePage-info">
                 <h2 className="genrePage-title">
-                  {movie?.title} ({new Date(movie?.release_date).getFullYear()})
+                  {movie.title} ({new Date(movie.release_date).getFullYear()})
                 </h2>
                 <p className="genrePage-overview">
                   {movie?.overview?.length > 150
-                    ? `${movie?.overview.slice(0, 150)}...`
-                    : movie?.overview}
+                    ? `${movie.overview.slice(0, 150)}...`
+                    : movie.overview}
                 </p>
                 <div className="genrePage-rating">
-                  {renderStars(movie?.vote_average, "genrePage-star")}
+                  {renderStars(movie.vote_average, "genrePage-star")}
                 </div>
                 <Link to={`/movie/${movie?.id}`}>
                   <button className="genrePage-trailer">Watch Trailer</button>

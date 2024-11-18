@@ -1,0 +1,21 @@
+/* @media (max-width: 768px) and (min-width: 700px) {
+  .comments-scroll {
+    width: 585px;
+  }
+
+  .comments-card {
+    width: 540px;
+  }
+
+  .review {
+    margin-bottom: 20px;
+    width: 585px;
+  }
+}
+
+@media (max-width: 621px) {
+  .review {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+} */
