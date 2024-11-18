@@ -57,7 +57,6 @@ export const HomePage = () => {
 
     // Check if the genre movies data is in localStorage
     const genreMoviesData = JSON.parse(localStorage.getItem("genreMovies"));
-    console.log(genreMoviesData);
 
     if (genreMoviesData) {
       setGenreMovies(genreMoviesData);
@@ -72,10 +71,6 @@ export const HomePage = () => {
 
       const genreData = await Promise.all(genreDataPromises);
       const genreMoviesDataFetched = Object.assign({}, ...genreData);
-      console.log(genreMoviesDataFetched);
-      console.log(genreMoviesDataFetched["12"]);
-      console.log(genreMoviesDataFetched["28"]);
-      console.log(genreMoviesDataFetched["16"]);
       setGenreMovies(genreMoviesDataFetched);
 
       const hasNonEmptyGenres = (genreMoviesDataFetched) =>
@@ -89,8 +84,6 @@ export const HomePage = () => {
             ([_, movies]) => movies.length > 0
           )
         );
-
-      console.log(hasNonEmptyGenres(genreMoviesDataFetched));
 
       if (hasNonEmptyGenres(genreMoviesDataFetched)) {
         const genreMovies = getNonEmptyGenres(genreMoviesDataFetched);
