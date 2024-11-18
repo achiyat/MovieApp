@@ -72,6 +72,10 @@ export const HomePage = () => {
 
       const genreData = await Promise.all(genreDataPromises);
       const genreMoviesDataFetched = Object.assign({}, ...genreData);
+      console.log(genreMoviesDataFetched);
+      console.log(genreMoviesDataFetched["12"]);
+      console.log(genreMoviesDataFetched["28"]);
+      console.log(genreMoviesDataFetched["16"]);
       setGenreMovies(genreMoviesDataFetched);
 
       const hasNonEmptyGenres = (genreMoviesDataFetched) =>
