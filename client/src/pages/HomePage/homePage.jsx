@@ -14,53 +14,40 @@ export const HomePage = () => {
   const [genreMovies, setGenreMovies] = useState({});
 
   const storeInLocalStorage = (key, data) => {
-    console.log("storeInLocalStorage");
     try {
       localStorage.setItem(key, JSON.stringify(data));
     } catch (error) {
       if (error.name === "QuotaExceededError") {
         console.error("LocalStorage quota exceeded, falling back to API call.");
-        // Optionally, you can clear localStorage or limit data size here
       } else {
         console.error("Error storing data in localStorage", error);
       }
     }
   };
 
-  // Usage in your fetchMovies function:
   const fetchMovies = async () => {
     const fetchedNowPlayingMovies = await fetchNowPlayingMovies();
     setNowPlayingMovies(fetchedNowPlayingMovies || []);
 
-    // Check if the nowPlayingMovies data is in localStorage
     const nowPlayingMoviesData = JSON.parse(
       localStorage.getItem("nowPlayingMovies")
     );
 
     if (nowPlayingMoviesData) {
       setNowPlayingMovies(nowPlayingMoviesData);
-      console.log("localStorage nowPlaying");
     } else {
       const fetchedNowPlayingMovies = await fetchNowPlayingMovies();
       setNowPlayingMovies(fetchedNowPlayingMovies || []);
 
-      // Try storing in localStorage with error handling
       if (fetchedNowPlayingMovies?.length > 0) {
-        console.log("'nowPlaying' go to store");
         storeInLocalStorage("nowPlayingMovies", fetchedNowPlayingMovies);
-      }
-
-      if (!fetchedNowPlayingMovies) {
-        console.log("nowPlayingMovies none");
       }
     }
 
-    // Check if the genre movies data is in localStorage
     const genreMoviesData = JSON.parse(localStorage.getItem("genreMovies"));
 
     if (genreMoviesData) {
       setGenreMovies(genreMoviesData);
-      console.log("localStorage genre");
     } else {
       const genreDataPromises = Object.keys(genresDict)?.map(
         async (genreId) => {
@@ -87,10 +74,7 @@ export const HomePage = () => {
 
       if (hasNonEmptyGenres(genreMoviesDataFetched)) {
         const genreMovies = getNonEmptyGenres(genreMoviesDataFetched);
-        console.log("'genre' go to store");
         storeInLocalStorage("genreMovies", genreMovies);
-      } else {
-        console.log("genreMovies none");
       }
     }
   };

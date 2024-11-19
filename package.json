@@ -7,13 +7,17 @@
   "scripts": {
     "clean": "node -e \"fs.rmSync('dist', {recursive: true, force: true});\"",
     "start": "npm run build:prod && npm run server",
+    "startest": "npm run build:prod:test && npm run server",
     "prebuild": "npm run clean",
     "server": "node dist/server/index.js",
     "build": "npm run copy:public && node esbuild.config.js",
     "copy:public": "node -e \"fs.cpSync('public', 'dist/client', {recursive: true})\"",
     "build:prod": "npm run copy:public && npm run build:prod:client && npm run build:prod:server",
+    "build:prod:test": "npm run copy:public && npm run build:prod:test:client && npm run build:prod:test:server",
     "build:prod:client": "esbuild client/src/index.js --jsx=automatic --bundle --outdir=dist/client --target=es2022 --loader:.js=jsx --loader:.png=file --loader:.jpeg=file --loader:.jpg=file --format=esm --minify",
-    "build:prod:server": "esbuild server/index.js --bundle --outdir=dist/server --packages=external --platform=node  --format=esm --minify"
+    "build:prod:server": "esbuild server/index.js --bundle --outdir=dist/server --packages=external --platform=node --format=esm --minify",
+    "build:prod:test:client": "esbuild client/src/index.js --jsx=automatic --bundle --outdir=dist/client --target=es2022 --loader:.js=jsx --loader:.png=file --loader:.jpeg=file --loader:.jpg=file --format=esm --sourcemap",
+    "build:prod:test:server": "esbuild server/index.js --bundle --outdir=dist/server --packages=external --platform=node --format=esm --sourcemap"
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
