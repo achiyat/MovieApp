@@ -17,12 +17,10 @@ export const Reviews = () => {
   };
 
   const handleReadMore = (index) => {
-    setReviews((prevReviews) => {
-      const updatedReviews = [...prevReviews];
-      updatedReviews[index].showFullContent =
-        !updatedReviews[index]?.showFullContent;
-      return updatedReviews;
-    });
+    const updatedReviews = [...reviews];
+    updatedReviews[index].showFullContent =
+      !updatedReviews[index].showFullContent;
+    setReviews(updatedReviews);
   };
 
   useEffect(() => {
