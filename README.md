@@ -3,6 +3,9 @@
 Here is a video presentation of the project:
 [Watch the video](https://resume-achiya-tzuriel.netlify.app/static/media/movieApp.35901b5c580b5ad9d88b.mp4)
 
+View the project on the live website:
+[View the Live Website](https://movieapp-lgry.onrender.com/)
+
 Or you can visit my website and watch it there:
 [Click here](https://resume-achiya-tzuriel.netlify.app/)
 
@@ -187,6 +190,8 @@ MovieApp/
 🔗 **LinkedIn:** [Achiya Tzuriel](https://www.linkedin.com/in/achiya-tzuriel/)
 
 🔗 **Personal website Link:** [Personal website](https://resume-achiya-tzuriel.netlify.app/)
+
+🔗 **Live website Link:** [Live website](https://movieapp-lgry.onrender.com/)
 
 🔗 **Project Link:** [MovieApp](https://github.com/achiyat/MovieApp)
 
