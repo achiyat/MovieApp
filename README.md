@@ -1,7 +1,7 @@
 # 💻 Movie App
 
 Here is a video presentation of the project:
-[Watch the video](https://resume-achiya-tzuriel.netlify.app/static/media/movieApp.35901b5c580b5ad9d88b.mp4)
+[Watch the video](https://www.youtube.com/watch?v=EjpljOppoMI)
 
 View the project on the live website:
 [View the Live Website](https://movieapp-lgry.onrender.com/)
