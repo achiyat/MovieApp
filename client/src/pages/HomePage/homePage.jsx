@@ -13,70 +13,18 @@ export const HomePage = () => {
   const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
   const [genreMovies, setGenreMovies] = useState({});
 
-  const storeInLocalStorage = (key, data) => {
-    console.log("storeInLocalStorage");
-    try {
-      localStorage.setItem(key, JSON.stringify(data));
-    } catch (error) {
-      if (error.name === "QuotaExceededError") {
-        console.error("LocalStorage quota exceeded, falling back to API call.");
-        // Optionally, you can clear localStorage or limit data size here
-      } else {
-        console.error("Error storing data in localStorage", error);
-      }
-    }
-  };
-
-  // Usage in your fetchMovies function:
   const fetchMovies = async () => {
-    // Check if the nowPlayingMovies data is in localStorage
-    const nowPlayingMoviesData = JSON.parse(
-      localStorage.getItem("nowPlayingMovies")
-    );
-    if (nowPlayingMoviesData) {
-      setNowPlayingMovies(nowPlayingMoviesData);
-      console.log("localStorage nowPlaying");
-    } else {
-      const fetchedNowPlayingMovies = await fetchNowPlayingMovies();
-      setNowPlayingMovies(fetchedNowPlayingMovies || []);
+    const nowPlayingMoviesData = await fetchNowPlayingMovies();
+    setNowPlayingMovies(nowPlayingMoviesData || []);
 
-      // Try storing in localStorage with error handling
-      if (fetchedNowPlayingMovies?.length > 0) {
-        console.log(fetchedNowPlayingMovies?.length);
-        storeInLocalStorage("nowPlayingMovies", fetchedNowPlayingMovies);
-      }
+    const genreDataPromises = Object.keys(genresDict)?.map(async (genreId) => {
+      const movies = await fetchMoviesByGenres(genreId);
+      return { [genreId]: movies || [] };
+    });
 
-      if (!fetchedNowPlayingMovies) {
-        console.log("nowPlayingMovies none");
-      }
-    }
-
-    // Check if the genre movies data is in localStorage
-    const genreMoviesData = JSON.parse(localStorage.getItem("genreMovies"));
-    if (genreMoviesData) {
-      setGenreMovies(genreMoviesData);
-      console.log("localStorage genre");
-    } else {
-      const genreDataPromises = Object.keys(genresDict)?.map(
-        async (genreId) => {
-          const movies = await fetchMoviesByGenres(genreId);
-          return { [genreId]: movies || [] };
-        }
-      );
-
-      const genreData = await Promise.all(genreDataPromises);
-      const genreMoviesDataFetched = Object.assign({}, ...genreData);
-      setGenreMovies(genreMoviesDataFetched);
-      // Try storing in localStorage with error handling
-      if (Object.keys(genreMoviesDataFetched).length > 0) {
-        console.log(Object.keys(genreMoviesDataFetched).length);
-        storeInLocalStorage("genreMovies", genreMoviesDataFetched);
-      }
-
-      if (!genreMoviesDataFetched) {
-        console.log("genreMovies none");
-      }
-    }
+    const genreData = await Promise.all(genreDataPromises);
+    const genreMoviesData = Object.assign({}, ...genreData);
+    setGenreMovies(genreMoviesData);
   };
 
   useEffect(() => {

@@ -78,7 +78,7 @@
   margin-bottom: 20px;
 }
 
-@media (max-width: 767px) {
+@media screen and (max-width: 767px) {
   .infoMovie-container {
     display: flex;
     flex-direction: column;
@@ -113,7 +113,7 @@
 }
 
 /* Screen width 420px and below */
-@media (max-width: 420px) {
+@media screen and (max-width: 420px) {
   .infoMovie-title {
     font-size: 1.8em;
   }

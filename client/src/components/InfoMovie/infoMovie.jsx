@@ -1,8 +1,8 @@
 // client/src/components/InfoMovie/infoMovie.jsx
 import React from "react";
-import "./infoMovie.css";
 import { getActors, getLogos, getYear, imgUrl } from "../../Utils/movieUtils";
 import { Link } from "react-router-dom";
+import "./infoMovie.css";
 
 export const InfoMovie = ({ movie }) => {
   const actors = getActors(movie);
