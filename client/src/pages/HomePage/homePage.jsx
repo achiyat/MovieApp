@@ -13,70 +13,18 @@ export const HomePage = () => {
   const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
   const [genreMovies, setGenreMovies] = useState({});
 
-  const storeInLocalStorage = (key, data) => {
-    try {
-      localStorage.setItem(key, JSON.stringify(data));
-    } catch (error) {
-      if (error.name === "QuotaExceededError") {
-        console.error("LocalStorage quota exceeded, falling back to API call.");
-      } else {
-        console.error("Error storing data in localStorage", error);
-      }
-    }
-  };
-
   const fetchMovies = async () => {
-    const fetchedNowPlayingMovies = await fetchNowPlayingMovies();
-    setNowPlayingMovies(fetchedNowPlayingMovies || []);
+    const nowPlayingMoviesData = await fetchNowPlayingMovies();
+    setNowPlayingMovies(nowPlayingMoviesData || []);
 
-    const nowPlayingMoviesData = JSON.parse(
-      localStorage.getItem("nowPlayingMovies")
-    );
+    const genreDataPromises = Object.keys(genresDict)?.map(async (genreId) => {
+      const movies = await fetchMoviesByGenres(genreId);
+      return { [genreId]: movies || [] };
+    });
 
-    if (nowPlayingMoviesData) {
-      setNowPlayingMovies(nowPlayingMoviesData);
-    } else {
-      const fetchedNowPlayingMovies = await fetchNowPlayingMovies();
-      setNowPlayingMovies(fetchedNowPlayingMovies || []);
-
-      if (fetchedNowPlayingMovies?.length > 0) {
-        storeInLocalStorage("nowPlayingMovies", fetchedNowPlayingMovies);
-      }
-    }
-
-    const genreMoviesData = JSON.parse(localStorage.getItem("genreMovies"));
-
-    if (genreMoviesData) {
-      setGenreMovies(genreMoviesData);
-    } else {
-      const genreDataPromises = Object.keys(genresDict)?.map(
-        async (genreId) => {
-          const movies = await fetchMoviesByGenres(genreId);
-          return { [genreId]: movies || [] };
-        }
-      );
-
-      const genreData = await Promise.all(genreDataPromises);
-      const genreMoviesDataFetched = Object.assign({}, ...genreData);
-      setGenreMovies(genreMoviesDataFetched);
-
-      const hasNonEmptyGenres = (genreMoviesDataFetched) =>
-        Object.values(genreMoviesDataFetched).some(
-          (movies) => movies.length > 0
-        );
-
-      const getNonEmptyGenres = (genreMoviesDataFetched) =>
-        Object.fromEntries(
-          Object.entries(genreMoviesDataFetched).filter(
-            ([_, movies]) => movies.length > 0
-          )
-        );
-
-      if (hasNonEmptyGenres(genreMoviesDataFetched)) {
-        const genreMovies = getNonEmptyGenres(genreMoviesDataFetched);
-        storeInLocalStorage("genreMovies", genreMovies);
-      }
-    }
+    const genreData = await Promise.all(genreDataPromises);
+    const genreMoviesData = Object.assign({}, ...genreData);
+    setGenreMovies(genreMoviesData);
   };
 
   useEffect(() => {
