@@ -2,11 +2,10 @@
 import React from "react";
 import "./credits.css";
 import { getActors, getDirectors, imgUrl } from "../../Utils/movieUtils";
-import profile from "../../media/images/profile.jpg";
 
 export const Credits = ({ movie }) => {
   const actors = getActors(movie);
-
+  const profile = "/media/images/profile.jpg";
   const directors = getDirectors(movie);
 
   return (
