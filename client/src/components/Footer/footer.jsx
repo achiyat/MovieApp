@@ -1,14 +1,9 @@
 // client/src/components/Footer/footer.jsx
 import React from "react";
 import "./footer.css";
-import facebook from "./../../media/images/facebook.png";
-import twitter from "./../../media/images/twitter.png";
-import google_plus from "./../../media/images/google_plus.png";
-import instagram from "./../../media/images/instagram.png";
 import { Link } from "react-router-dom";
 
 const renderSpan = (word) => <span>{word}</span>;
-
 export const Footer = () => {
   return (
     <section className="footer-section" id="footer">
@@ -67,10 +62,10 @@ export const Footer = () => {
             </button>
           </form>
           <div className="footer-social">
-            <img src={facebook} alt="Facebook" />
-            <img src={twitter} alt="Twitter" />
-            <img src={google_plus} alt="Google Plus" />
-            <img src={instagram} alt="Instagram" />
+            <img src="/media/images/facebook.png" alt="Facebook" />
+            <img src="/media/images/twitter.png" alt="Twitter" />
+            <img src="/media/images/google_plus.png" alt="Google Plus" />
+            <img src="/media/images/instagram.png" alt="Instagram" />
           </div>
         </div>
       </div>

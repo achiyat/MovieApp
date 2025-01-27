@@ -1,8 +1,7 @@
-import profile from "../media/images/profile.jpg";
-
 const date = new Date();
 const dateOptions = { year: "numeric", month: "long", day: "numeric" };
 const timeOptions = { hour: "2-digit", minute: "2-digit" };
+const profile = "/media/images/profile.jpg";
 
 const getDate = (days) => {
   date.setDate(date.getDate() + days);
